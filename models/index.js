@@ -1,4 +1,6 @@
 const { model, Schema } = require('mongoose')
 
-module.exports = {
-}
+const Poll = require('./Poll.js')(model, Schema)
+const Comment = require('./Comment.js')(model, Schema)
+
+module.exports = { Poll, Comment }
