@@ -5,7 +5,7 @@ module.exports = (model, Schema) => {
     category: { type: String, required: true },
     options: { type: Schema.Types.Mixed, required: true },
     imageLink: String,
-    votes: Schema.Types.Mixed,
+    votes: { type: Schema.Types.Mixed, required: true },
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
     user: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   }, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}})
