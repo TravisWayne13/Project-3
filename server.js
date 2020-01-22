@@ -11,11 +11,11 @@ app.use(express.json())
 require('./routes')(app)
 
 require('mongoose')
-  .connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/polls'), {
+  .connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/polls', {
     useCreateIndex: true,
     useFindAndModify: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
-  }
+  })
   .then(() => app.listen(process.env.PORT || 3001))
   .catch(e => console.error(e))
