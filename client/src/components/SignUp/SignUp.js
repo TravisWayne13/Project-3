@@ -17,15 +17,15 @@ const SignIn = _ => {
                 </Jumbotron>
                 <FormGroup>
                     <Label className="colorSet">Name</Label>
-                    <Input type="userName" placeholder="username or email" />
+                    <Input type="userName" placeholder="ex. John Doe" />
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Email</Label>
-                    <Input type="email" placeholder="username or email" />
+                    <Input type="email" placeholder="ex. johndoe@gmail.com" />
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Password</Label>
-                    <Input type="password" placeholder="password" />
+                    <Input type="password" placeholder="ex. password123" />
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block buttonStyles">
                     Sign Up
@@ -39,7 +39,7 @@ const SignIn = _ => {
                 <br />
                 <div className="text-center colorSet">
                     <p>Already Have an Account?</p>
-                    <a href="/sign-up">Sign In</a>
+                    <a href="/signin">Sign In</a>
                 </div>
             </Form>
         </Container>

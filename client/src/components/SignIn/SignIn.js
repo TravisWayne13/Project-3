@@ -17,11 +17,11 @@ const SignIn = _ => {
                 </Jumbotron>
                 <FormGroup>
                     <Label className="colorSet">Email</Label>
-                    <Input type="email" placeholder="username or email" />
+                    <Input type="email" placeholder="ex. johndoe@gmail.com" />
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Password</Label>
-                    <Input type="password" placeholder="password" />
+                    <Input type="password" placeholder="ex. password123" />
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block buttonStyles">
                     Login
@@ -35,7 +35,7 @@ const SignIn = _ => {
                 <br />
                 <div className="text-center colorSet">
                     <p>Need an account?</p>
-                    <a href="/sign-up">Sign Up</a>
+                    <a href="/signup">Sign Up</a>
                 </div>
             </Form>
         </Container>

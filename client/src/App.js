@@ -9,12 +9,11 @@ class App extends Component {
 
     render() {
         return (
-            <>
                 <Router>
-                    {/* <SignIn /> */}
-                    <SignUp />
+                    <Route path="/signin" component={SignIn} />
+                    <Route path="/signup" component={SignUp} />
                 </Router>
-            </>
+           
         )
     }
 }
