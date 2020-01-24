@@ -20,3 +20,12 @@ background-color: #7B68EE !important;
 .signInBtn{
     margin-right: 10px;
 }
+.image2{
+    max-height: 400px;
+    max-width: auto;
+}
+.image2container{
+    margin-top: 40px;
+    text-align: center;
+    margin-left: -20px;
+}
