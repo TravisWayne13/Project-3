@@ -28,7 +28,7 @@ const SignIn = _ => {
                     <Input type="password" placeholder="ex. password123" />
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block buttonStyles">
-                    Sign Up
+                    Create Account
                 </Button>
                 <div  className="text-center pt-3 colorSet">
                     Or continue with your google login info
