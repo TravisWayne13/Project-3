@@ -35,7 +35,8 @@ const SignInComp = _ => {
                 <br />
                 <div className="text-center colorSet">
                     <p>Need an account?</p>
-                    <a href="/signup">Sign Up</a>
+                    <a className="bottomLink" href="/signup">Sign Up</a>
+                    <a href="/">Home</a>
                 </div>
             </Form>
         </Container>

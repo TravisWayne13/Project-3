@@ -19,8 +19,7 @@ class App extends Component {
                     </Route>
                     <Route exact path="/signin">
                         <SignIn/>
-                    </Route>
-                    
+                    </Route>    
                 </Router>
            
            

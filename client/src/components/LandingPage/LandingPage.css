@@ -1,3 +1,22 @@
 .image{
     text-align: center;
+    margin-top: 30px;
+    
+}
+.linkContainer{
+    text-align: center;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+.links{
+    font-size: 30px;
+}
+.landingBtn{
+background-color: #7B68EE !important;
+}
+.signUpBtn{
+    margin-left: 15px;
+}
+.signInBtn{
+    margin-right: 10px;
 }
