@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
 import { GoogleLogin } from 'react-google-login';
 import './SignIn.css'
-const SignIn = _ => {
+const SignInComp = _ => {
 
 
 
@@ -41,4 +41,4 @@ const SignIn = _ => {
         </Container>
     )
 }
-export default SignIn
+export default SignInComp

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import LandingPage from './pages/LandingPage'
 
 class App extends Component {
 
@@ -10,9 +11,18 @@ class App extends Component {
     render() {
         return (
                 <Router>
-                    <Route path="/signin" component={SignIn} />
-                    <Route path="/signup" component={SignUp} />
+                    <Route exact path="/">
+                        <LandingPage/>
+                    </Route>
+                    <Route exact path="/signup">
+                        <SignUp/>
+                    </Route>
+                    <Route exact path="/signin">
+                        <SignIn/>
+                    </Route>
+                    
                 </Router>
+           
            
         )
     }
