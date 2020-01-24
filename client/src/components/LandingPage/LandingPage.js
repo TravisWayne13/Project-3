@@ -1,6 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route , Link} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import logo from '../../images/logo.svg'
+import {Button} from 'reactstrap'
 import './LandingPage.css'
 const LandingPageComp = _ => {
 
@@ -10,9 +11,14 @@ const LandingPageComp = _ => {
         <div className="image">
         <img src={logo}/>
         </div>
-        <Link to="/signin">Sign In</Link>
-        <br/>
-        <Link to="/signup">Sign Up</Link>
+        <div className="linkContainer">
+        <Link className="links" to="/signin">
+            <Button className="landingBtn signInBtn" color="primary" size="lg" active>Sign In</Button>
+        </Link>
+        <Link className="links" to="/signup">
+        <Button className="landingBtn signUpBtn" color="primary" size="lg" active>Register</Button>
+        </Link>
+        </div>
         </>
         )
        
