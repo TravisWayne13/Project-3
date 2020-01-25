@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
+import UserContext from '../../utils/Usercontext'
 import { GoogleLogin } from 'react-google-login';
 import './SignUp.css'
 const SignUpComp = _ => {
 
-
+const { username, email, password, handleInputChange, handleFormSubmit } = useContext(UserContext)
 
     return (
         <Container>
@@ -17,17 +18,17 @@ const SignUpComp = _ => {
                 </Jumbotron>
                 <FormGroup>
                     <Label className="colorSet">Name</Label>
-                    <Input type="userName" placeholder="ex. John Doe" />
+                    <Input type="userName" name="username" value={username} onChange={handleInputChange} placeholder="ex. John Doe" />
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Email</Label>
-                    <Input type="email" placeholder="ex. johndoe@gmail.com" />
+                    <Input type="email" name="email" value={email} onChange={handleInputChange} placeholder="ex. johndoe@gmail.com" />
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Password</Label>
-                    <Input type="password" placeholder="ex. password123" />
+                    <Input type="password" name="password" value={password} onChange={handleInputChange} placeholder="ex. password123" />
                 </FormGroup>
-                <Button className="btn-lg btn-dark btn-block buttonStyles">
+                <Button className="btn-lg btn-dark btn-block buttonStyles" onClick={handleFormSubmit}>
                     Create Account
                 </Button>
                 <div  className="text-center pt-3 colorSet">
