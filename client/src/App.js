@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import LandingPage from './pages/LandingPage'
+import CreatePoll from './pages/CreatePoll'
 
 class App extends Component {
 
@@ -19,7 +20,10 @@ class App extends Component {
                     </Route>
                     <Route exact path="/signin">
                         <SignIn/>
-                    </Route>    
+                    </Route>
+                    <Route exact path="/createpoll">  
+                        <CreatePoll/>
+                    </Route>
                 </Router>
         
            
