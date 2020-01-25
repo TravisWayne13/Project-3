@@ -1,4 +1,4 @@
-const { Comment } = require('../models')
+const { Comment, Poll } = require('../models')
 
 module.exports = app => {
   
@@ -6,7 +6,15 @@ module.exports = app => {
   app.get('/comments', (req, res) => {
     Comment.find()
       .populate('poll')
-      .then(polls => res.json(polls))
+      .then(comments => res.json(comments))
+      .catch(err => console.error(err))
+  })
+
+  // Get Comments by Poll
+  app.get('/comments/:id', (req, res) => {
+    Comment.find({'poll': req.params.id})
+      .populate('poll')
+      .then(comment => res.json(comment))
       .catch(err => console.error(err))
   })
 
