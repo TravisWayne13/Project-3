@@ -1,0 +1,115 @@
+.hamburger {
+  width: 28px;
+  height: 28px;
+  background-image: url('../../images/menu.svg')
+}
+
+button:active {
+  outline: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.bm-menu-wrap {
+  left: 0;
+}
+
+h4, h5 {
+  font-weight: 400 !important;
+}
+
+h5 {
+  font-size: 16px !important;
+  text-align: left !important;
+  margin-bottom: 0 !important;
+}
+
+/* Individual item */
+.bm-item {
+  display: grid !important;
+  grid-template-columns: 2fr 5fr 1fr;
+  align-items: center;
+  /* Our sidebar item styling */
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.2s;
+  text-align: left;
+}
+
+.bm-item:first-child {
+  margin-bottom: 50px;
+}
+
+.bm-item:not(:first-child) {
+  border-bottom: solid 1px #3E3E49;
+  height: 60px;
+}
+
+/* Change color on hover */
+.bm-item:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+.bm-burger-button button:hover, .bm-burger-button button:focus, .bm-cross-button button:hover, .bm-cross-button button:focus, .bm-item:hover, .bm-item:focus {
+  outline: 0;
+}
+
+/* The rest copied directly from react-burger-menu docs */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  background-image: url('../../images/menu.svg');
+  width: 28px;
+  height: 28px;
+}
+
+.bm-burger-button span {
+  display: none;
+}
+
+.bm-burger-button button {
+  position: static !important;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  background-image: url('../../images/Close.svg');
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross-button span {
+  display: none;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #151522;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #151522;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
