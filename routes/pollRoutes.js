@@ -1,28 +1,26 @@
-const { Poll } = require('../models')
+const { Poll, Comment } = require('../models')
 
 module.exports = app => {
   
   // Get all Polls
   app.get('/polls', (req, res) => {
     Poll.find()
-      .populate('comments')
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })
 
   // Get Polls by Category
   app.get('/polls/:category', (req, res) => {
-    Poll.find()
-      .populate('comments')
+    Poll.find({'category': req.params.category})
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })
 
   // Get one Poll by id
-  app.get('/polls/:id', (req, res) => {
+  app.get('/polls/id/:id', (req, res) => {
     Poll.findById(req.params.id)
       .populate('comments')
-      .then(poll => res.json(poll))
+      .then(poll => res.json({poll, comments: poll.comments}))
       .catch(err => console.error(err))
   })
 
