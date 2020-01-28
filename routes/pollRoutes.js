@@ -2,9 +2,16 @@ const { Poll, Comment } = require('../models')
 
 module.exports = app => {
   
-  // Get all Polls
+  // Get all Polls, Newest first
   app.get('/api/polls', (req, res) => {
-    Poll.find()
+    Poll.find({}).sort({createdAt: -1})
+      .then(polls => res.json(polls))
+      .catch(err => console.error(err))
+  })
+
+  // Get all Polls, Top first
+  app.get('/api/top/polls', (req, res) => {
+    Poll.find({}).sort({'Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0': -1})
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })
@@ -32,14 +39,14 @@ module.exports = app => {
   })
 
   // Update one Poll (Used to update the votes)
-  app.post('/api/polls/:id', (req, res) => {
+  app.put('/api/polls/:id', (req, res) => {
     Poll.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one Poll
-  app.post('/api/polls/:id', (req, res) => {
+  app.delete('/api/polls/:id', (req, res) => {
     Poll.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
