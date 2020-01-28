@@ -20,10 +20,25 @@ h4, h5 {
   font-weight: 400 !important;
 }
 
+.user-info h4 {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
 h5 {
   font-size: 16px !important;
   text-align: left !important;
   margin-bottom: 0 !important;
+}
+
+p.email {
+  font-size: 12px;
+  color: #999999;
+}
+
+.bm-item.user-avatar {
+  display: block;
+  grid-template-columns: 1fr 5fr;
 }
 
 /* Individual item */
@@ -37,6 +52,14 @@ h5 {
   color: #d1d1d1;
   transition: color 0.2s;
   text-align: left;
+  cursor: pointer;
+}
+
+
+.user-info {
+  margin-left: 8px;
+  position: relative;
+  top: 8px;
 }
 
 .bm-item:first-child {
@@ -46,6 +69,13 @@ h5 {
 .bm-item:not(:first-child) {
   border-bottom: solid 1px #3E3E49;
   height: 60px;
+}
+
+.bm-item.logout {
+  position: absolute;
+  border-bottom: 0;
+  font-size: 12px;
+  bottom: 40px;
 }
 
 /* Change color on hover */

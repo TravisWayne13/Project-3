@@ -12,7 +12,6 @@ const SignInComp = _ => {
 
     return (
         <Container>
-          <Menu />
             <Form>
                 <Jumbotron className="jumbotron" fluid>
                     <Container fluid>
