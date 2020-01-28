@@ -10,7 +10,7 @@ module.exports = (model, Schema) => {
 }
 
 
-{
-  "comment": "Test Comment",
-  "poll": "5e287833478f0d0f4156b471"
-}
+// {
+//   "comment": "Test Comment",
+//   "poll": "5e287833478f0d0f4156b471"
+// }

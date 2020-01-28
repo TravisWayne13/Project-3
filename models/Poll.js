@@ -19,10 +19,10 @@ module.exports = (model, Schema) => {
 }
 
 
-{
-  "headline": "What kind of icecream do you like?",
-  "category": "Food",
-  "options": ["Vanilla", "Chocolate", "Strawberry"],
-  "imageLink": "testLink",
-  "votes" {"Vanilla": 0, "Chocolate": 0, "Strawberry": 0}
-}
+// {
+//   "headline": "What kind of icecream do you like?",
+//   "category": "Food",
+//   "options": ["Vanilla", "Chocolate", "Strawberry"],
+//   "imageLink": "testLink",
+//   "votes" {"Vanilla": 0, "Chocolate": 0, "Strawberry": 0}
+// }

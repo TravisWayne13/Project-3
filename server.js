@@ -22,13 +22,13 @@ passport.deserializeUser(User.deserializeUser())
 require('./routes')(app)
 
 
-
+// process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 
 require('mongoose')
-  .connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost/polls', {
+  .connect('mongodb://localhost:27017/polls', {
     useCreateIndex: true,
     useFindAndModify: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-  .then(() => app.listen(process.env.PORT || 3001))
+  .then(() => app.listen(process.env.PORT || 2998))
   .catch(e => console.error(e))

@@ -17,8 +17,12 @@ const CreatePoll = _ => {
         setCreatePollState({ ...createPollState, [target.name]: target.value })
     }
 
-    createPollState.handleChooseCategory = ({ target }) => {
-        setCreatePollState({ ...createPollState, category: target.classList[0] })
+    createPollState.handleChooseCategory = ({ target, }) => {
+        console.log('hello')
+        setCreatePollState({ ...createPollState, category: target.innerText })
+        console.log(target.innerText)
+      
+       
     }
 
     createPollState.handleCreatePoll = () => {
