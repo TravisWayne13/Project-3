@@ -2,6 +2,10 @@ import React from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
 import { GoogleLogin } from 'react-google-login';
 import './SignIn.css'
+import close from '../../images/Close.svg'
+
+import Menu from '../Menu'
+
 const SignInComp = _ => {
 
 
