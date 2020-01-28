@@ -3,7 +3,7 @@ const { Comment, Poll } = require('../models')
 module.exports = app => {
   
   // Get all Comments (Not sure if we need this if comments are gonna be populated onto the Polls, leaving it in for testing -Michael)
-  app.get('/comments', (req, res) => {
+  app.get('/api/comments', (req, res) => {
     Comment.find()
       .populate('poll')
       .then(comments => res.json(comments))
@@ -11,7 +11,7 @@ module.exports = app => {
   })
 
   // Get Comments by Poll
-  app.get('/comments/:id', (req, res) => {
+  app.get('/api/comments/:id', (req, res) => {
     Comment.find({'poll': req.params.id})
       .populate('poll')
       .then(comment => res.json(comment))
@@ -19,14 +19,14 @@ module.exports = app => {
   })
 
   // Post one Comment
-  app.post('/comments', (req, res) => {
+  app.post('/api/comments', (req, res) => {
     Comment.create(req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Update one Comment
-  app.post('/comments/:id', (req, res) => {
+  app.post('/api/comments/:id', (req, res) => {
     Comment.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))

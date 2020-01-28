@@ -1,7 +1,7 @@
 const { User } = require('../models')
 
 module.exports = app => {
-  app.post('./register', (req, res) => {
+  app.post('/api/register', (req, res) => {
     const { email, username, } = req.body
     User
       .register(new User({ email, username }),
@@ -13,12 +13,12 @@ module.exports = app => {
       }
   })
 
-  app.post('/login', (req, res) => {
-    User.authenticate()(req.body.username, req.body.password, (e, user) => {
-      if(e) {
-        console.error(e)
-      }
-      res.json(user)
-    })
-  })
+  // app.post('/api/login', (req, res) => {
+  //   User.authenticate()(req.body.username, req.body.password, (e, user) => {
+  //     if(e) {
+  //       console.error(e)
+  //     }
+  //     res.json(user)
+  //   })
+  // })
 }
