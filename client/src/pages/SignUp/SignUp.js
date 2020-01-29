@@ -18,7 +18,7 @@ const SignUp = _ => {
   userState.handleFormSubmit = e => {
     e.preventDefault()
 
-    axios.post('./register', {username: userState.username, email: useState.email, password: userState.password})
+    axios.post('/register', {username: userState.username, email: useState.email, password: userState.password})
       .then(({data}) => {
         console.log(data)
       })
