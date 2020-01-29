@@ -14,16 +14,16 @@ class PollComp extends Component {
         super(props)
 
     }
-
   
-    componentDidMount() {
-        axios.get('/api/polls')
-        .then(response => {console.log(response)})
-        .catch(err => {console.log(err)})
-    }
+    // componentDidMount() {
+    //     axios.get('/api/polls/')
+    //     .then(response => {console.log(response)})
+    //     .catch(err => {console.log(err)})
+    // }
 
 
   render() {
+    // console.log(window.location.href.split('/pollpage/')[1])
 
 
         return (

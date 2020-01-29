@@ -25,7 +25,7 @@ class App extends Component {
                     <Route exact path="/createpoll">  
                         <CreatePoll/>
                     </Route>
-                    <Route exact path="/pollpage">
+                    <Route path="/pollpage">
                         <PollPage />
                     </Route>
 

@@ -9,8 +9,8 @@ const CreatePollComp = () => {
     const { title,
         category,
         isDropdownOpen,
+        imageLink,
         options,
-        handleAddOption,
         handleInputChange,
         handleChooseCategory,
         handleCreateOption,
@@ -49,22 +49,25 @@ const CreatePollComp = () => {
                             </InputGroupButtonDropdown>
                         </InputGroup>
                     </FormGroup>
-                    <br />
-                    <br />
+                    <Label className="colorSet">Image Link</Label>
+                    <Input name="imageLink"  type="imageLink" onChange={handleInputChange} value={imageLink}/>
+
+                    <br/>
+                    <br/>
+                    
+                    {
+                        options.map((option, i) => (
                     <FormGroup>
-                        <Label className="colorSet">Option 1</Label>
-                        <Input name="options" type="options" onChange={handleInputChange} value={options}/>
+                        <Label className="colorSet">Option{i + 1}</Label>
+                        <Input name="options" data-index={i} type="options" onChange={handleInputChange} value={option}/>
                     </FormGroup>
-                    <FormGroup>
-                        <Label className="colorSet">Option 2</Label>
-                        <Input name="options"  type="options" onChange={handleInputChange} value={options}/>
-                    </FormGroup>
-  
-                    <Button className="buttonStyles addBtn">+ Add Options</Button>
+    ))
+                        }
+                    <Button onClick={handleCreateOption} className="buttonStyles addBtn">+ Add Options</Button>
                     <br />
                     <br />
 
-                    <Button onClick={handleCreatePoll, handleAddOption} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
+                    <Button onClick={handleCreatePoll} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
                 </Form>
             </Container>
         </>
