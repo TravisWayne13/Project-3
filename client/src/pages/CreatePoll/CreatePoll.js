@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CreatePollContext from '../../utils/CreatePollContext'
 import CreatePollComp from '../../components/CreatePoll'
 import Menu from '../../components/Menu'
-import Axios from 'axios'
+import axios from 'axios'
 
 const CreatePoll = _ => {
 
@@ -36,7 +36,7 @@ const CreatePoll = _ => {
     createPollState.handleCreatePoll = (event) => {
          event.preventDefault()
         console.log(createPollState)
-        Axios.post('/api/polls', 
+        axios.post('/api/polls', 
         {
             headline: createPollState.title,
             category: createPollState.category,
