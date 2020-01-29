@@ -9,7 +9,8 @@ const SignUp = _ => {
   const [ userState, userSetState ] = useState({
     username: '',
     email: '',
-    password: ''
+    password: '',
+    taken: false
   })
 
   userState.handleInputChange = e => {
@@ -18,12 +19,22 @@ const SignUp = _ => {
   userState.handleFormSubmit = e => {
     e.preventDefault()
 
-    axios.post('/api/register', {username: userState.username, email: useState.email, password: userState.password})
+    axios.post('/api/username',{username: userState.username})
       .then(({data}) => {
-        console.log(data)
+        // If username isn't taken crete user
+        axios.post('/api/register', {username: userState.username, email: useState.email, password: userState.password})
+          .then(({data}) => {
+            window.location.href = '/explore'
+          })
+          .catch(e => console.error(e))
+        }
+      )
+      .catch(err => {
+        if (err.response.status === 409) {
+          userSetState({...userState, taken: true})
+        }
       })
-      .catch(e => console.error(e))
-  }
+    }
 
     return(
       <UserContext.Provider value={userState}>
