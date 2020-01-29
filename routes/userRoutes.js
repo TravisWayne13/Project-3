@@ -1,4 +1,5 @@
 const { User } = require('../models')
+const jwt = require('jsonwebtoken')
 
 module.exports = app => {
   app.post('/api/register', (req, res) => {
@@ -17,7 +18,11 @@ module.exports = app => {
       if(e) {
         console.error(e)
       }
-      res.json(user)
+
+      res.json(user ? {
+        token: jwt.sign({ id: user._id },
+        process.env.SECRET)
+      } : user)
     })
   })
 }
