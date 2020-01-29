@@ -13,12 +13,12 @@ const CreatePoll = _ => {
     })
 
     createPollState.handleInputChange = ({ target }) => {
-        console.log(target)
         setCreatePollState({ ...createPollState, [target.name]: target.value })
+        console.log(target.name)
+        console.log(target.value)
     }
 
-    createPollState.handleChooseCategory = ({ target, }) => {
-        console.log('hello')
+    createPollState.handleChooseCategory = ({ target }) => {
         setCreatePollState({ ...createPollState, category: target.innerText })
         console.log(target.innerText)
       
@@ -29,6 +29,7 @@ const CreatePoll = _ => {
         console.log(createPollState)
     }
 
+ 
     createPollState.handleCreateOption = () => {
 
     }

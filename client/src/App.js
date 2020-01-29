@@ -4,6 +4,7 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import LandingPage from './pages/LandingPage'
 import CreatePoll from './pages/CreatePoll'
+import PollPage from './pages/PollPage'
 
 class App extends Component {
 
@@ -24,6 +25,10 @@ class App extends Component {
                     <Route exact path="/createpoll">  
                         <CreatePoll/>
                     </Route>
+                    <Route exact path="/pollpage">
+                        <PollPage />
+                    </Route>
+
                 </Router>
         
            

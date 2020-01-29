@@ -9,6 +9,8 @@ const CreatePollComp = () => {
     const { title,
         category,
         isDropdownOpen,
+        options,
+        handleAddOption,
         handleInputChange,
         handleChooseCategory,
         handleCreateOption,
@@ -51,26 +53,18 @@ const CreatePollComp = () => {
                     <br />
                     <FormGroup>
                         <Label className="colorSet">Option 1</Label>
-                        <Input type="option 1" />
+                        <Input name="options" type="options" onChange={handleInputChange} value={options}/>
                     </FormGroup>
                     <FormGroup>
                         <Label className="colorSet">Option 2</Label>
-                        <Input type="option 2" />
+                        <Input name="options"  type="options" onChange={handleInputChange} value={options}/>
                     </FormGroup>
-                    <FormGroup>
-                        <Label className="colorSet">Option 3</Label>
-                        <Input type="option 2" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label className="colorSet">Option 4</Label>
-                        <Input type="option 2" />
-                    </FormGroup>
-
+  
                     <Button className="buttonStyles addBtn">+ Add Options</Button>
                     <br />
                     <br />
 
-                    <Button onClick={handleCreatePoll} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
+                    <Button onClick={handleCreatePoll, handleAddOption} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
                 </Form>
             </Container>
         </>

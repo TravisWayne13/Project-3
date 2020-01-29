@@ -26,8 +26,9 @@ module.exports = app => {
   // Get one Poll by id
   app.get('/api/polls/id/:id', (req, res) => {
     Poll.findById(req.params.id)
-      .populate('comments')
-      .then(poll => res.json({poll, comments: poll.comments}))
+      // .populate('comments')
+      // comments: poll.comments
+      .then(poll => res.json({poll}))
       .catch(err => console.error(err))
   })
 

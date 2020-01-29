@@ -2,9 +2,10 @@ import React, { createContext } from 'react'
 
 const CreatePollContext = createContext({
     title: '',
-    category: 'Boom',
+    category: '',
     options: [],
     isDropdownOpen: false,
+    handleAddOption: () => { },
     handleInputChange: () => { },
     handleChooseCategory: () => { },
     handleCreatePoll: () => { },
