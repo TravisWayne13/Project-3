@@ -5,20 +5,28 @@ import { GoogleLogin } from 'react-google-login';
 import './SignUp.css'
 const SignUpComp = _ => {
 
-const { username, email, password, handleInputChange, handleFormSubmit } = useContext(UserContext)
+const { username, email, password, taken, handleInputChange, handleFormSubmit } = useContext(UserContext)
+
+const errorStyle = {
+  border: 'solid 1px red'
+}
+
+const errorLabel = {
+  display: 'block',
+  color: 'red'
+}
 
     return (
         <Container>
             <Form>
                 <Jumbotron className="jumbotron" fluid>
-                    <Container fluid>
-                        <h2 className="colorSet">Sign Up</h2>
-                        <p className="lead colorSet" >Please enter your information below</p>
-                    </Container>
+                    <h2 className="colorSet">Sign Up</h2>
+                    <p className="lead colorSet" >Please enter your information below</p>
                 </Jumbotron>
                 <FormGroup>
-                    <Label className="colorSet">Name</Label>
-                    <Input type="userName" name="username" value={username} onChange={handleInputChange} placeholder="ex. John Doe" />
+                    <Label className="colorSet">Username</Label>
+                    <Input style={taken ? errorStyle : {border: '0'}} type="userName" name="username" value={username} onChange={handleInputChange} placeholder="ex. John Doe" />
+                    <p style={taken ? errorLabel : {display: 'none'}}> Username is taken</p>
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Email</Label>
