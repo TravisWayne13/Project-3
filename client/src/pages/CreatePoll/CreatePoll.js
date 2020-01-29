@@ -36,18 +36,18 @@ const CreatePoll = _ => {
     createPollState.handleCreatePoll = (event) => {
          event.preventDefault()
         console.log(createPollState)
-        axios.post('/api/polls', 
-        {
-            headline: createPollState.title,
-            category: createPollState.category,
-            options: createPollState.options,
-            imageLink: createPollState.imageLink,
-        })
-        .then((response) => {
-            console.log(response)
+        // axios.post('/api/polls', 
+        // {
+        //     headline: createPollState.title,
+        //     category: createPollState.category,
+        //     options: createPollState.options,
+        //     imageLink: createPollState.imageLink,
+        // })
+        // .then((response) => {
+        //     console.log(response)
             
-        })
-        .catch(err => {console.log(err)})
+        // })
+        // .catch(err => {console.log(err)})
     }
 
  
