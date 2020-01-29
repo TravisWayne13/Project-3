@@ -20,4 +20,20 @@ module.exports = app => {
       res.json(user)
     })
   })
+
+  app.post('/api/username', (req,res) => {
+    User.findOne({username: req.body.username})
+      .then((e, user) => {
+        if (e) {
+          if (e.username === req.body.username) {
+            res.sendStatus(409)
+          } else {
+            console.error(e)
+          }
+        } else {
+          res.sendStatus(200)
+        }
+      })
+      .catch(err => console.error(err))
+  })
 }
