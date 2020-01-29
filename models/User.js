@@ -2,7 +2,8 @@ module.exports = (model, Schema) => {
   const User = new Schema({
     name: String,
     email: String,
-    username: String
+    username: String,
+    avatar: String
   })
 
   User.plugin(require('passport-local-mongoose'))
