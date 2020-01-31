@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import CreatePollContext from '../../utils/CreatePollContext'
 import CreatePollComp from '../../components/CreatePoll'
 import Menu from '../../components/Menu'
-import axios from 'axios'
+import PollAPI from '../../utils/PollAPI'
+
+const {createPoll} = PollAPI
 
 const CreatePoll = _ => {
 
@@ -11,6 +13,7 @@ const CreatePoll = _ => {
         imageLink: '',
         category: 'Sports',
         options: ['',''],
+        votes: [{},{}],
         isDropdownOpen: false
     })
 
@@ -27,27 +30,32 @@ const CreatePoll = _ => {
 }
 
     createPollState.handleChooseCategory = ({ target }) => {
-        setCreatePollState({ ...createPollState, category: target.innerText })
-        console.log(target.innerText)
+        console.log('hey')
+        // setCreatePollState({ ...createPollState, category: target.innerText })
+        console.log(target)
       
        
     }
 
     createPollState.handleCreatePoll = (event) => {
          event.preventDefault()
+         const votes = {}
+         for (let i = 0; i < createPollState.options.length; i++) {
+             votes[createPollState.options[i]] = 0
+         }
         console.log(createPollState)
-        // axios.post('/api/polls', 
-        // {
-        //     headline: createPollState.title,
-        //     category: createPollState.category,
-        //     options: createPollState.options,
-        //     imageLink: createPollState.imageLink,
-        // })
-        // .then((response) => {
-        //     console.log(response)
-            
-        // })
-        // .catch(err => {console.log(err)})
+        createPoll({
+            headline: createPollState.title,
+            category: createPollState.category,
+            options: createPollState.options,
+            imageLink: createPollState.imageLink,
+            votes: votes,
+            user: '5e311ad47fbfde1cfff7a9dc'
+        })
+        .then(({data}) => {
+            console.log(data)
+        })
+        .catch(err => {console.log(err)})
     }
 
  
