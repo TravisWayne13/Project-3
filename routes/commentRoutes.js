@@ -28,14 +28,20 @@ module.exports = app => {
   })
 
   // Update one Comment
-  app.post('/api/comments/:id', (req, res) => {
+  app.post('/api/comments/:id', passport.authenticate('jwt', { session: false }
+   ), (req, res) => {
     Comment.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one Comment
+<<<<<<< HEAD
+  app.post('/polls/:id', passport.authenticate('jwt', { session: false }
+  ), (req, res) => {
+=======
   app.delete('/polls/:id', (req, res) => {
+>>>>>>> 0e461a6b966acd01c7fbc5a83a04c10f33203e56
     Comment.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
