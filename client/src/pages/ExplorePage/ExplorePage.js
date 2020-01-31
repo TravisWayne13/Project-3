@@ -1,5 +1,5 @@
 import React from 'react'
-import LandingPageComp from '../../components/ExplorePage'
+import ExplorePageComp from '../../components/ExplorePage'
 
 
 const ExplorePage = _ => {
