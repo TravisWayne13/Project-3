@@ -35,7 +35,7 @@ module.exports = app => {
   })
 
   // Delete one Comment
-  app.post('/polls/:id', (req, res) => {
+  app.delete('/polls/:id', (req, res) => {
     Comment.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
