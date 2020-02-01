@@ -6,6 +6,8 @@ const UserContext = createContext({
   password: '',
   loginError: false,
   formValid: true,
+  intitalLoad: true,
+  token: '',
   errors: {
     username: '',
     email: '',

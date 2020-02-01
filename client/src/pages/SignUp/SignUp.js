@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SignUpComp from '../../components/SignUp'
 import UserContext from '../../utils/Usercontext'
 import PollAPI from '../../utils/PollAPI'
+import cookie from 'react-cookies'
 
-const { registerUser, usernameAvailable } = PollAPI
+const { registerUser, usernameAvailable, authorize } = PollAPI
 
 const SignUp = _ => {
 
@@ -12,6 +13,7 @@ const SignUp = _ => {
     email: '',
     password: '',
     formValid: true,
+    token: '',
     errors: {
       username: 'Username is required',
       email: 'Email is required',
@@ -23,7 +25,7 @@ const SignUp = _ => {
     const { name, value } = e.target
     let errors = userState.errors
     const validEmailRegex = 
-    RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
+    RegExp(/^(([^<>()[\].,;:s@"]+(.[^<>()[\].,;:s@"]+)*)|(".+"))@(([^<>()[\].,;:s@"]+.)+[^<>()[\].,;:s@"]{2,})$/i)
 
     // Validation Switch
     switch (name) {
@@ -66,7 +68,10 @@ const SignUp = _ => {
           // If username isn't taken create user
           registerUser({username: userState.username, email: useState.email, password: userState.password})
             .then(({data}) => {
-              window.location.href = '/explore'
+              const expires = new Date()
+   expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 7)
+              cookie.save('token', data.token, { path: '/', expires })
+              userSetState({...userState, token: cookie.load('token')})
             })
             .catch(e => console.error(e))
           }
@@ -81,6 +86,22 @@ const SignUp = _ => {
       userSetState({...userState, formValid: false})
     }
   }
+
+  useEffect(() => {
+    // Check token cookie
+    userSetState({...userState, token: cookie.load('token')})
+    // Check if user is Authorized if token exists
+    if (userState.token !== '') {
+      authorize(userState.token)
+        .then(res => {
+          console.log(res)
+          window.location.href = '/explore'
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
+  }, [userState.token])
 
   return (
     <UserContext.Provider value={userState}>

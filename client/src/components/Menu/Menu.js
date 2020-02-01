@@ -8,7 +8,7 @@ import rightChevron from '../../images/Right-Chevron.svg'
 import UserContext from '../../utils/Usercontext'
 import { slide as Nav } from "react-burger-menu"
 
-const Menu = (props) => {
+const Menu = () => {
 
   let { username, email, userAvatar, logout } = useContext(UserContext) // Change to const before production
 
@@ -27,7 +27,7 @@ const Menu = (props) => {
       <a className="menu-item" href="/explore"><img src={compass} alt="Compass icon"/><h5>Explore</h5><img src={rightChevron} alt="right chevron"/></a>
       <a className="menu-item" href="/mypolls"><img src={poll} alt="Poll icon"/><h5>My Polls</h5><img src={rightChevron} alt="right chevron"/></a>
       <a className="menu-item" href="/createpoll"><img src={create} alt="Create icon"/><h5>Create a Poll</h5><img src={rightChevron} alt="right chevron"/></a>
-      <a className="logout" onClick={logout}>Logout</a>
+      <a className="logout" onClick={logout} href="/api/logout">Logout</a>
     </Nav>
   )
 }
