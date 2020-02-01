@@ -1,4 +1,5 @@
 const { Poll, Comment } = require('../models')
+const passport = require('passport')
 
 module.exports = app => {
   
