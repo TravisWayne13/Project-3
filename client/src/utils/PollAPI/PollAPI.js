@@ -19,7 +19,10 @@ const PollAPI = {
   // User Routes
   registerUser: (user) => axios.post('/api/register', user),
   loginUser: (user) => axios.post('/api/login', user),
-  usernameAvailable: (user) => axios.post('/api/username', user)
+  usernameAvailable: (user) => axios.post('/api/username', user),
+  authorize: (token) => axios.post('/api/authorize', {}, {
+    headers: { 'Authorization': 'Bearer ' + token }
+})
 }
 
 export default PollAPI

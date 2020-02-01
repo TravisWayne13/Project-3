@@ -20,24 +20,21 @@ module.exports = app => {
   })
 
   // Post one Comment
-  app.post('/api/comments', passport.authenticate('jwt', { session: false }
-  ), (req, res) => {
+  app.post('/api/comments', passport.authenticate('jwt'), (req, res) => {
     Comment.create(req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Update one Comment
-  app.post('/api/comments/:id', passport.authenticate('jwt', { session: false }
-   ), (req, res) => {
+  app.post('/api/comments/:id', passport.authenticate('jwt'), (req, res) => {
     Comment.findByIdAndUpdate(req.params.id, req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
   })
 
   // Delete one Comment
-  app.post('/polls/:id', passport.authenticate('jwt', { session: false }
-  ), (req, res) => {
+  app.post('/polls/:id', passport.authenticate('jwt'), (req, res) => {
     Comment.findByIdAndDelete(req.params.id)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
