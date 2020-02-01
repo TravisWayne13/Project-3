@@ -1,17 +1,7 @@
 import axios from 'axios'
 // Change out functions
 const PollAPI = {
-<<<<<<< HEAD
-  // getItems: () => axios.get('/items'),
-  // addItem: (item) => axios.post('/items', item),
-  // updateItem: (id, values) => axios.put(`/items/${id}`, values),
-  // deleteItem: (id) => axios.delete(`/items/${id}`)
-  
-
-  createPoll : (poll) => axios.post('/api/polls', poll)
-  
-=======
-  // Poll Routes
+// Poll Routes
   getNewestPolls: () => axios.get('/api/polls'),
   getTopPolls: () => axios.get('/api/top/polls'),
   getCategories: (category) => axios.get(`/api/polls/${category}`),
@@ -29,7 +19,6 @@ const PollAPI = {
   registerUser: (user) => axios.post('/api/register', user),
   loginUser: (user) => axios.post('/api/login', user),
   usernameAvailable: (user) => axios.post('/api/username', user)
->>>>>>> b47c97a7fdf3a059f3bf00ce30043800a96a4531
 }
 
 export default PollAPI
