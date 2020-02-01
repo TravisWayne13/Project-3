@@ -18,11 +18,6 @@ const errorLabel = {
   fontSize: '12px'
 }
 
-const inputBorder = {
-  border: '0'
-}
-
-
     return (
       <Container>
         <Form>
