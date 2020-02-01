@@ -6,6 +6,7 @@ import Explore from './pages/ExplorePage'
 import LandingPage from './pages/LandingPage'
 import CreatePoll from './pages/CreatePoll'
 import PollPage from './pages/PollPage'
+import PollComp from './components/PollComp'
 
 class App extends Component {
 
@@ -22,22 +23,19 @@ class App extends Component {
                     </Route>
                     <Route exact path="/signin">
                         <SignIn/>
-                    </Route>
-<<<<<<< HEAD
-                    <Route exact path="/createpoll">  
-                        <CreatePoll/>
-                    </Route>
-                    <Route path="/pollpage">
-                        <PollPage />
-                    </Route>
-
-=======
+                        </Route>
                     <Route exact path='/explore'>
                         <Explore/>
-                    </Route>    
->>>>>>> a747b53802257b9c4dfc80ac04b717c9e8fc071a
-                </Router>
+                    </Route>
+                    <Route exact path='/createpoll'>
+                        <CreatePoll/>
+                    </Route>
+                    <Route exact path='/pollpage'>
+                        <PollComp/>
+                    </Route>
+                        </Router>
         
+                   
            
         )
     }

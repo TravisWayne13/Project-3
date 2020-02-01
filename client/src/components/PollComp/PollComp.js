@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import CreatePollContext from '../../utils/CreatePollContext'
 import 'survey-react/survey.css'
 import * as Survey from 'survey-react'
-import { Container, Jumbotron, FormGroup, Label, Input, Button, Card, CardImg } from 'reactstrap'
+import { Container, Jumbotron, FormGroup, Label, Input, Button, Card, CardImg , CustomInput} from 'reactstrap'
 import './PollComp.css'
 import axios from 'axios'
 
@@ -13,38 +13,42 @@ class PollComp extends Component {
     
     constructor(props) {
         super(props)
-     
+        this.state = {
+            headline : '',
+            category : '',
+            options : [],
+            imageLink: '',
+            votes: {},
+            selectedValue: ''
+        }
     }
 
-    state = {
-        headline : '',
-        category : '',
-        options : [],
-        imageLink: '',
-        votes: {}
-    }
+  
+
   
     componentDidMount() {
         axios.get('/api/polls/id/5e35ca60ff2f672bd98a393c')
         .then(({data}) => {
-         console.log(data.headline)
          this.setState({
         headline: data.headline,
         category: data.category,
         options: data.options,
         imageLink: data.imageLink,
         votes: data.votes,
-
         })
         })
         .catch(err => {console.log(err)}
         )
     }
 
+    onSelectBox(event)  {  
+        this.setState({
+        selectedValue : event.currentTarget.value
+          });
+      }
  
 
   render() {
-    // console.log(window.location.href.split('/pollpage/')[1])
 
 
         return (
@@ -60,14 +64,12 @@ class PollComp extends Component {
                     <br/>
                     { 
                         this.state.options.map((option, i) => (
-                            <FormGroup check>
-                            <Label className="pollInput" check>
-                            <Input type="radio" className="pollInput" data-index={i}  />
-                            {option}
-                            </Label>
-                            <br/>
-                            <br/>
-                            </FormGroup>
+                             <FormGroup>
+                             <div>
+                              <CustomInput type="radio" onClick={this.onSelectBox} id={i} name={option} value={option} label={option} className="pollInput" />
+                            </div>
+                           </FormGroup>
+
                             ))
                     }
 
