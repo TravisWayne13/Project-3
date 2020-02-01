@@ -4,7 +4,13 @@ const UserContext = createContext({
   username: '',
   email: '',
   password: '',
-  taken: false,
+  loginError: false,
+  formValid: true,
+  errors: {
+    username: '',
+    email: '',
+    password: ''
+  },
   handleInputChange: () => { },
   handleFormSubmit: () => { }
 })

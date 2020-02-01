@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login'
 import './SignIn.css'
-import close from '../../images/Close.svg'
+import UserContext from '../../utils/Usercontext'
 
-import Menu from '../Menu'
 
 const SignInComp = _ => {
+  
+  const { username,  password, loginError, handleInputChange, handleFormSubmit } = useContext(UserContext)
 
+  const errorStyle = {
+    border: 'solid 2px #FF647C'
+  }
 
+  const errorLabel = {
+    marginTop: '4px',
+    display: 'block',
+    color: '#FF647C',
+    textAlign: 'center'
+  }
 
     return (
         <Container>
@@ -16,20 +26,21 @@ const SignInComp = _ => {
                 <Jumbotron className="jumbotron" fluid>
                     <Container fluid>
                         <h2 className="colorSet">Sign In</h2>
-                        <p className="lead colorSet" >Please enter your email and password</p>
+                        <p className="lead colorSet" >Please enter your username and password</p>
                     </Container>
                 </Jumbotron>
                 <FormGroup>
-                    <Label className="colorSet">Email</Label>
-                    <Input type="email" placeholder="ex. johndoe@gmail.com" />
+                    <Label className="colorSet">username</Label>
+                    <Input style={loginError ? errorStyle : {border: '0'}} type="text" name="username" placeholder="ex. Myusername" value={username} onChange={handleInputChange}/>
                 </FormGroup>
                 <FormGroup>
                     <Label className="colorSet">Password</Label>
-                    <Input type="password" placeholder="ex. password123" />
+                    <Input style={loginError ? errorStyle : {border: '0'}} type="password" name="password" value={password} onChange={handleInputChange} placeholder="ex. password123" />
                 </FormGroup>
-                <Button className="btn-lg btn-dark btn-block buttonStyles">
+                <Button className="btn-lg btn-dark btn-block buttonStyles" onClick={handleFormSubmit}>
                     Login
                 </Button>
+                <p style={loginError ? errorLabel : {display: 'none'}}>Login Invalid, please try again</p>
                 <div  className="text-center pt-3 colorSet">
                     Or continue with your google login info
                 </div>
