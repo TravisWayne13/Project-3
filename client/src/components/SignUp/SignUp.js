@@ -14,7 +14,8 @@ const errorStyle = {
 
 const errorLabel = {
   display: 'block',
-  color: '#FF647C'
+  color: '#FF647C',
+  fontSize: '12px'
 }
 
 const inputBorder = {
@@ -32,7 +33,7 @@ const inputBorder = {
           <FormGroup>
             <Label className="colorSet">Username</Label>
             <Input 
-              style={(!formValid && errors.emial) ? errorStyle : {border: '0'}}
+              style={(!formValid && errors.username) ? errorStyle : {border: '0'}}
               type="text" 
               name="username" 
               value={username} 
