@@ -10,7 +10,7 @@ const LandingPageComp = _ => {
     return(
         <>
         <div className="image">
-        <img alt="logo" src={logo}/>
+        <img src={logo} alt="logo"/>
         </div>
         <div className="linkContainer">
         <Link className="links" to="/signin">
@@ -21,7 +21,7 @@ const LandingPageComp = _ => {
         </Link>
         </div>
         <div className="image2container">
-        <img className="image2" alt="backgroundImage" src={mainpic}/>
+        <img className="image2" src={mainpic} alt="hero"/>
         </div>
         </>
         )

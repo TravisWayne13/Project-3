@@ -30,7 +30,7 @@ const SignInComp = _ => {
                     </Container>
                 </Jumbotron>
                 <FormGroup>
-                    <Label className="colorSet">username</Label>
+                    <Label className="colorSet">Username</Label>
                     <Input style={loginError ? errorStyle : {border: '0'}} type="text" name="username" placeholder="ex. Myusername" value={username} onChange={handleInputChange}/>
                 </FormGroup>
                 <FormGroup>
