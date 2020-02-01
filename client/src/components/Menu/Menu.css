@@ -96,6 +96,8 @@ p.email {
   background-image: url('../../images/menu.svg');
   width: 28px;
   height: 28px;
+  margin-left: 15px;
+  margin-top: 30px;
 }
 
 .bm-burger-button span {
