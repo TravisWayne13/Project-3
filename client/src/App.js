@@ -6,7 +6,6 @@ import Explore from './pages/ExplorePage'
 import LandingPage from './pages/LandingPage'
 import CreatePoll from './pages/CreatePoll'
 import PollPage from './pages/PollPage'
-import PollComp from './components/PollComp'
 
 class App extends Component {
 
@@ -31,7 +30,7 @@ class App extends Component {
                         <CreatePoll/>
                     </Route>
                     <Route exact path='/pollpage'>
-                        <PollComp/>
+                        <PollPage/>
                     </Route>
                         </Router>
         
