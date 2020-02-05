@@ -1,6 +1,4 @@
 import React from 'react'
-import { Container } from 'reactstrap'
-//import Menu from '../Menu'
 import NavBar from '../NavBar'
 import './Explorepage.css'
 
@@ -9,9 +7,9 @@ const ExplorePageComp = _ => {
 
 
   return(
-      <Container>
+      <div>
         <NavBar/>
-      </Container>
+      </div>
   )
 }
 export default ExplorePageComp
