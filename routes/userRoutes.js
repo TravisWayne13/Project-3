@@ -12,6 +12,11 @@ module.exports = app => {
           console.error(e)
         }
         res.json(user ? {
+          email: user.email,
+          username: user.username,
+          polls: user.polls,
+          comments: user.comments,
+          userAvatar: user.avatar,
           token: jwt.sign({ id: user._id },
           process.env.SECRET)
         } : user)
@@ -26,6 +31,11 @@ module.exports = app => {
       }
 
       res.json(user ? {
+        email: user.email,
+        username: user.username,
+        polls: user.polls,
+        comments: user.comments,
+        userAvatar: user.avatar,
         token: jwt.sign({ id: user._id },
         process.env.SECRET)
       } : user)

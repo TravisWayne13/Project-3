@@ -12,7 +12,7 @@ const ExplorePage = _ => {
   const [ userState, userSetState ] = useState({
     username: '',
     password: '',
-    token: '',
+    token: cookie.load('token'),
     intitalLoad: true
   })
 

@@ -22,7 +22,7 @@ const PollAPI = {
   usernameAvailable: (user) => axios.post('/api/username', user),
   authorize: (token) => axios.post('/api/authorize', {}, {
     headers: { 'Authorization': 'Bearer ' + token }
-})
+  })
 }
 
 export default PollAPI

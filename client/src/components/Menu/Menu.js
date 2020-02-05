@@ -1,33 +1,69 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Menu.css'
 import avatar from '../../images/Avatar.svg'
 import compass from '../../images/compass.svg'
 import poll from '../../images/Poll.svg'
 import create from '../../images/Create.svg'
 import rightChevron from '../../images/Right-Chevron.svg'
-import UserContext from '../../utils/Usercontext'
-import { slide as Nav } from "react-burger-menu"
+import { slide as Nav } from 'react-burger-menu'
+import PollAPI from '../../utils/PollAPI'
+import cookie from 'react-cookies'
+
+const { authorize } = PollAPI
 
 const Menu = () => {
 
-  let { username, email, userAvatar, logout } = useContext(UserContext) // Change to const before production
+  const [ userState, userSetState ] = useState({
+    userInfo: sessionStorage.getItem('userInfo') || '',
+    username: '',
+    email: '',
+    userAvatar: '',
+    token: '',
+    intitalLoad: true
+  })
 
-  username = 'Dunsterville' // Remove once user login is working
-  email = 'mrd11895@gmail.com' // Remove once user login is working
+  userState.logout = () => {
+    sessionStorage.removeItem('userInfo')
+    cookie.remove('token', { path: '/' })
+  }
+
+  useEffect(() => {
+    console.log(userState)
+    // Check token cookie, set initalLoad to false
+    let userInfo = JSON.parse(userState.userInfo)
+    userSetState({...userState, 
+      intitalLoad: false, 
+      token: cookie.load('token'),
+      username: userInfo.username,
+      email: userInfo.email,
+      userAvatar: userInfo.userAvatar
+    })
+    // If not first run, check if authorized
+    if (!userState.intitalLoad) {
+      authorize(userState.token)
+        .then(res => {
+        })
+        // If not authorized, send to signin page
+        .catch(err => {
+          console.error(err)
+          window.location.href = '/signin'
+        })
+    }
+  }, [userState.token])
 
   return (
     <Nav>
       <div className="user-avatar">
-        <img alt="User Avatar" src={userAvatar ? userAvatar : avatar }/>
+        <img alt="User Avatar" src={userState.userAvatar ? userState.userAvatar : avatar }/>
         <div className="user-info">
-          <h4>{username}</h4>
-          <p className="email">{email}</p>
+          <h4>{userState.username}</h4>
+          <p className="email">{userState.email}</p>
         </div>
       </div>
       <a className="menu-item" href="/explore"><img src={compass} alt="Compass icon"/><h5>Explore</h5><img src={rightChevron} alt="right chevron"/></a>
       <a className="menu-item" href="/mypolls"><img src={poll} alt="Poll icon"/><h5>My Polls</h5><img src={rightChevron} alt="right chevron"/></a>
       <a className="menu-item" href="/createpoll"><img src={create} alt="Create icon"/><h5>Create a Poll</h5><img src={rightChevron} alt="right chevron"/></a>
-      <a className="logout" onClick={logout} href="/api/logout">Logout</a>
+      <a className="logout" onClick={userState.logout} href="/signin">Logout</a>
     </Nav>
   )
 }

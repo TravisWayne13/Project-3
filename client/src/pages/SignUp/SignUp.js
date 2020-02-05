@@ -25,7 +25,7 @@ const SignUp = _ => {
     const { name, value } = e.target
     let errors = userState.errors
     const validEmailRegex = 
-    RegExp(/^(([^<>()[\].,;:s@"]+(.[^<>()[\].,;:s@"]+)*)|(".+"))@(([^<>()[\].,;:s@"]+.)+[^<>()[\].,;:s@"]{2,})$/i)
+    RegExp(/^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/i)
 
     // Validation Switch
     switch (name) {
@@ -66,12 +66,14 @@ const SignUp = _ => {
           errors.username = ''
           userSetState({...userState, errors, formValid: true})
           // If username isn't taken create user
-          registerUser({username: userState.username, email: useState.email, password: userState.password})
+          registerUser({username: userState.username, email: userState.email, password: userState.password})
             .then(({data}) => {
               const expires = new Date()
    expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 7)
               cookie.save('token', data.token, { path: '/', expires })
               userSetState({...userState, token: cookie.load('token')})
+              // Set User info in session storage
+              sessionStorage.setItem('userInfo', JSON.stringify(data))
             })
             .catch(e => console.error(e))
           }
