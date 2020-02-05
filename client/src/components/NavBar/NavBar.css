@@ -4,7 +4,6 @@
   display: grid !important;
   grid-template-columns: 1fr 5fr 1fr !important;
   justify-items: center !important;
-  /* align-items:  baseline; */
 }
 
 .MuiAppBar-colorPrimary{
