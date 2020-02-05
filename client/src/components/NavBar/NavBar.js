@@ -12,7 +12,7 @@ const NavBar = (props) => {
       <AppBar position="static">
       <Menu/>
       <img className="logo" src={logo}/>
-      <IconButton aria-label="search" size="medium" edge="end">
+      <IconButton aria-label="search" size="large" edge="end">
         <SearchIcon/>
       </IconButton>
       </AppBar>

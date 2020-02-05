@@ -1,8 +1,10 @@
 .MuiAppBar-root{
   transform: none !important;
   box-shadow: none !important;
-  display: grid;
+  display: grid !important;
   grid-template-columns: 1fr 5fr 1fr !important;
+  justify-items: center !important;
+  /* align-items:  baseline; */
 }
 
 .MuiAppBar-colorPrimary{
@@ -12,6 +14,12 @@
 
 .logo{
   height: 35px !important;
+  margin-top: 20px;
+}
+
+.MuiSvgIcon-root{
+  color: rgb(240, 233, 233) !important;
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 480px) {
