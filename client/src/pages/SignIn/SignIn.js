@@ -12,7 +12,7 @@ const SignIn = _ => {
   const [ userState, userSetState ] = useState({
     username: '',
     password: '',
-    token: '',
+    token: cookie.load('token'),
     loginError: false,
   })
 
@@ -29,11 +29,12 @@ const SignIn = _ => {
         if (!data) {
           userSetState({...userState, loginError: true})
         } else {
-          console.log('response:' + data.token)
           const expires = new Date()
    expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 7)
           cookie.save('token', data.token, { path: '/', expires })
           userSetState({...userState, token: data.token })
+          // Set User info in session storage
+          sessionStorage.setItem('userInfo', JSON.stringify(data))
         }
       })
       .catch(e => {
