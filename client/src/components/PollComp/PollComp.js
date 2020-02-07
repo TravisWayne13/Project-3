@@ -17,7 +17,7 @@ const PollComp = () => {
         options,
         selectedValue,
         onSelectBox,
-        checkSelect
+        updatePoll
      } = useContext(DisplayPollContext)
   
 
@@ -50,7 +50,7 @@ const PollComp = () => {
                     
                     <br/>
 
-                    <Button onClick={checkSelect} className="btn-lg btn-dark btn-block buttonStyles">Submit</Button>
+                    <Button onClick={updatePoll} className="btn-lg btn-dark btn-block buttonStyles">Submit</Button>
 
                 </FormGroup>
 

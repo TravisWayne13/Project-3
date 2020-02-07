@@ -1,6 +1,7 @@
 import React, { createContext } from 'react'
 
 const DisplayPollContext = createContext({
+    id: '',
     headline: '',
     category: '',
     imageLink: '',
@@ -8,7 +9,7 @@ const DisplayPollContext = createContext({
     selectedValue: '',
     votes: '',
     onSelectBox : () => { },
-    checkSelect : () => {}
+    updatePoll : () => {}
 })
 
 export default DisplayPollContext

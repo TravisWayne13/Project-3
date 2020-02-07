@@ -6,8 +6,10 @@ import PollAPI from '../../utils/PollAPI'
 import axios from 'axios'
 const PollPage = _ => {
 
+const {updateOnePoll} = PollAPI
 
     const [DisplayPollState, setDisplayPollState] = useState({
+        id: '',
         headline: '',
         imageLink: '',
         category: '',
@@ -19,17 +21,31 @@ const PollPage = _ => {
     DisplayPollState.onSelectBox = ({ target }) => {
       setDisplayPollState({ ...DisplayPollState, selectedValue: target.value })
       console.log(target.value)
-      console.log(DisplayPollState)
     }
 
-    DisplayPollState.checkSelect = ({ target }) => {
+    DisplayPollState.updatePoll = ({ target }, req,res) => {
         console.log(DisplayPollState)
-      }
+        let property = `votes.${DisplayPollState.selectedValue}`
+        updateOnePoll(DisplayPollState.id, { $inc: { [property] : 1 }},
+        function(err, result){
+            if(err){
+                console.log(err)
+            }
+        console.log(result)
+        })
+
+    }
+        
+    
+    
+      
 
     useEffect(() => {
-        axios.get('/api/polls/id/5e35f6de1321793b86b8e990')
+        axios.get('/api/polls/id/5e3c5a760817bf448c20c6d0')
         .then(({data}) => {
+        console.log(data)
          setDisplayPollState({
+        id: data._id,
         headline: data.headline,
         category: data.category,
         options: data.options,
