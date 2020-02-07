@@ -1,3 +1,31 @@
 .MuiAppBar-root{
   transform: none !important;
+  box-shadow: none !important;
+  display: grid !important;
+  grid-template-columns: 1fr 5fr 1fr !important;
+  justify-items: center !important;
+}
+
+.MuiAppBar-colorPrimary{
+  color: #fff;
+  background-color: #181818 !important;
+}
+
+.logo{
+  height: 35px !important;
+  margin-top: 20px;
+}
+
+.MuiSvgIcon-root{
+  color: rgb(240, 233, 233) !important;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 480px) {
+  .MuiAppBar-colorPrimary {
+    background-color: #7B68EE !important;
+  }
+  .MuiAppBar-root {
+    box-shadow: black;
+  }
 }
