@@ -17,6 +17,7 @@ module.exports = app => {
           polls: user.polls,
           comments: user.comments,
           userAvatar: user.avatar,
+          userId: user._id,
           token: jwt.sign({ id: user._id },
           process.env.SECRET)
         } : user)
@@ -36,6 +37,7 @@ module.exports = app => {
         polls: user.polls,
         comments: user.comments,
         userAvatar: user.avatar,
+        userId: user._id,
         token: jwt.sign({ id: user._id },
         process.env.SECRET)
       } : user)
