@@ -39,5 +39,5 @@ require('mongoose')
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-  .then(() => app.listen(process.env.PORT || 2998))
+  .then(() => app.listen(process.env.PORT || 3001))
   .catch(e => console.error(e))

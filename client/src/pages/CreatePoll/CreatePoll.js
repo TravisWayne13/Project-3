@@ -9,6 +9,7 @@ const {createPoll} = PollAPI
 const CreatePoll = _ => {
 
     const [createPollState, setCreatePollState] = useState({
+        userInfo: sessionStorage.getItem('userInfo') || '',
         title: '',
         imageLink: '',
         category: 'Sports',
@@ -42,13 +43,15 @@ const CreatePoll = _ => {
              votes[createPollState.options[i]] = 0
          }
         console.log(createPollState)
+        let userInfo = JSON.parse(createPollState.userInfo)
+        console.log(userInfo.userId)
         createPoll({
             headline: createPollState.title,
             category: createPollState.category,
             options: createPollState.options,
             imageLink: createPollState.imageLink,
             votes: votes,
-            user: '5e311ad47fbfde1cfff7a9dc'
+            user: userInfo.userId
         })
         .then(({data}) => {
             console.log(data)
