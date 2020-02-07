@@ -6,7 +6,7 @@ module.exports = (model, Schema) => {
     options: { type: Schema.Types.Mixed, required: true },
     imageLink: String,
     votes: { type: Schema.Types.Mixed, required: true },
-    user: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    user: { type: Schema.Types.ObjectId, ref: 'User'},
   }, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}})
 
   Poll.virtual('comments', {
@@ -24,6 +24,6 @@ module.exports = (model, Schema) => {
   "category": "Food",
   "options": ["Vanilla", "Chocolate", "Strawberry"],
   "imageLink": "testLink",
-  "votes" {"Vanilla": 0, "Chocolate": 0, "Strawberry": 0},
+  "votes": {"Vanilla": 0, "Chocolate": 0, "Strawberry": 0},
 }
 */

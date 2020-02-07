@@ -6,6 +6,7 @@ module.exports = app => {
   // Get all Polls, Newest first
   app.get('/api/polls', (req, res) => {
     Poll.find({}).sort({createdAt: -1})
+      .populate('user')
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })

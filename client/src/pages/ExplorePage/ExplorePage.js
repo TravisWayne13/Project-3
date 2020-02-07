@@ -2,7 +2,8 @@ import React, { useEffect, useContext, useState } from 'react'
 import ExplorePageComp from '../../components/ExplorePage'
 import PollAPI from '../../utils/PollAPI'
 import cookie from 'react-cookies'
-//import UserContext from '../../utils/Usercontext'
+import { get } from 'mongoose'
+import UserContext from '../../utils/Usercontext'
 
 const { authorize } = PollAPI
 
@@ -10,8 +11,6 @@ const { authorize } = PollAPI
 const ExplorePage = _ => {
 
   const [ userState, userSetState ] = useState({
-    username: '',
-    password: '',
     token: cookie.load('token'),
     intitalLoad: true
   })
@@ -33,7 +32,7 @@ const ExplorePage = _ => {
   }, [userState.token])
 
   return(
-    <ExplorePageComp />
+      <ExplorePageComp />
   )
        
 }

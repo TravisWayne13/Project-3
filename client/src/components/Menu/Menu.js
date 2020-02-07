@@ -17,9 +17,7 @@ const Menu = () => {
     userInfo: sessionStorage.getItem('userInfo') || '',
     username: '',
     email: '',
-    userAvatar: '',
-    token: '',
-    intitalLoad: true
+    userAvatar: ''
   })
 
   userState.logout = () => {
@@ -31,25 +29,12 @@ const Menu = () => {
     console.log(userState)
     // Check token cookie, set initalLoad to false
     let userInfo = JSON.parse(userState.userInfo)
-    userSetState({...userState, 
-      intitalLoad: false, 
-      token: cookie.load('token'),
+    userSetState({...userState,
       username: userInfo.username,
       email: userInfo.email,
       userAvatar: userInfo.userAvatar
     })
-    // If not first run, check if authorized
-    if (!userState.intitalLoad) {
-      authorize(userState.token)
-        .then(res => {
-        })
-        // If not authorized, send to signin page
-        .catch(err => {
-          console.error(err)
-          window.location.href = '/signin'
-        })
-    }
-  }, [userState.token])
+  }, [userState.userInfo])
 
   return (
     <Nav>
