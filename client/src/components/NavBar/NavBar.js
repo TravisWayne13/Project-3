@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Collapse, Button, ButtonGroup, Container } from 'reactstrap'
+import { Collapse, Button, Container } from 'reactstrap'
 import { AppBar, IconButton }  from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import logo from '../../images/logo.svg'
@@ -25,12 +25,12 @@ const NavBar = (props) => {
       <Collapse isOpen={isOpen}>
         <Container className="buttons">
           <div className="btnGroup">
-          <Button id="category">Music</Button>
-          <Button id="category">Video Games</Button>
-          <Button id="category">Sports</Button>
-          <Button id="category">Other</Button>
-          <Button id="category">Movies</Button>
-          <Button id="category">Food</Button>
+          <Button onClick={toggle} id="category">Music</Button>
+          <Button onClick={toggle} id="category">Video Games</Button>
+          <Button onClick={toggle} id="category">Sports</Button>
+          <Button onClick={toggle} id="category">Other</Button>
+          <Button onClick={toggle} id="category">Movies</Button>
+          <Button onClick={toggle} id="category">Food</Button>
           </div>
         </Container>
       </Collapse>

@@ -5,6 +5,8 @@
   grid-template-columns: 1fr 7fr;
   margin: 30px;
   grid-column-gap: 8px;
+  border-top: solid 1px #353535;
+  padding-top: 30px;
 }
 
 .pollCreated {
