@@ -56,7 +56,7 @@ const ExplorePageComp = _ => {
                       <label for={option}>{option}</label>
                     </p>
                   ))}
-                  <button>Submit</button>
+                  <button>Vote Now</button>
                 </form>
               </div>
               {(poll.imageLink !== '' ? <img className="pollImage" src={poll.imageLink} /> : null)}
