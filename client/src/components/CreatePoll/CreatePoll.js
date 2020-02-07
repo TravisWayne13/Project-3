@@ -7,7 +7,7 @@ import { FaPizzaSlice} from 'react-icons/fa'
 import { MdVideogameAsset} from 'react-icons/md'
 import { FaMusic} from 'react-icons/fa'
 import { FaQuestion} from 'react-icons/fa'
-
+import './CreatePoll.css'
 
 const CreatePollComp = () => {
 
@@ -42,12 +42,12 @@ const CreatePollComp = () => {
 
                         <ButtonToolbar>
                             <ButtonGroup>"
-                                <Button onClick={handleChooseCategory} className="buttonStyles"><IoIosBasketball/></Button>
-                                <Button onClick={handleChooseCategory} className="Movies buttonStyles"><MdLocalMovies/></Button>
-                                <Button onClick={handleChooseCategory} className="Food buttonStyles"><FaPizzaSlice/></Button>
-                                <Button onClick={handleChooseCategory} className="Video Games buttonStyles"><MdVideogameAsset/></Button>
-                                <Button onClick={handleChooseCategory} className="Music buttonStyles"><FaMusic/></Button>
-                                <Button onClick={handleChooseCategory} className="Other buttonStyles"><FaQuestion/></Button>
+                                <Button onClick={() => handleChooseCategory('Sports')}  className={category === 'Sports' ? 'buttonStylesSelected' : 'buttonStyles'}><IoIosBasketball/></Button>
+                                <Button onClick={() => handleChooseCategory('Movies')}  className={category === 'Movies' ? 'buttonStylesSelected' : 'buttonStyles'}><MdLocalMovies/></Button>
+                                <Button onClick={() => handleChooseCategory('Food')}  className={category === 'Food' ? 'buttonStylesSelected' : 'buttonStyles'}><FaPizzaSlice/></Button>
+                                <Button onClick={() => handleChooseCategory('Video Games')} className={category === 'Video Games' ? 'buttonStylesSelected' : 'buttonStyles'}><MdVideogameAsset/></Button>
+                                <Button onClick={() => handleChooseCategory('Music')}  className={category === 'Music' ? 'buttonStylesSelected' : 'buttonStyles'}><FaMusic/></Button>
+                                <Button onClick={() => handleChooseCategory('Other')}  className={category === 'Other' ? 'buttonStylesSelected' : 'buttonStyles'}><FaQuestion/></Button>
 
                             </ButtonGroup>
                         </ButtonToolbar>

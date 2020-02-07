@@ -29,10 +29,8 @@ const CreatePoll = _ => {
     }
 }
 
-    createPollState.handleChooseCategory = ({ target }) => {
-        console.log('hey')
-        // setCreatePollState({ ...createPollState, category: target.innerText })
-        console.log(target)
+    createPollState.handleChooseCategory = category => {
+        setCreatePollState({ ...createPollState, category })
       
        
     }
