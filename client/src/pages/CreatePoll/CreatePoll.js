@@ -11,7 +11,7 @@ const CreatePoll = _ => {
     const [createPollState, setCreatePollState] = useState({
         title: '',
         imageLink: '',
-        category: 'Sports',
+        category: '',
         options: ['',''],
         votes: [{},{}],
         isDropdownOpen: false

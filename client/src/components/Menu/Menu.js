@@ -28,7 +28,7 @@ const Menu = () => {
   useEffect(() => {
     console.log(userState)
     // Check token cookie, set initalLoad to false
-    let userInfo = JSON.parse(userState.userInfo)
+    let userInfo = userState.userInfo
     userSetState({...userState,
       username: userInfo.username,
       email: userInfo.email,

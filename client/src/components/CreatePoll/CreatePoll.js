@@ -12,17 +12,15 @@ import './CreatePoll.css'
 const CreatePollComp = () => {
 
 
-
     const { title,
         category,
-        isDropdownOpen,
         imageLink,
         options,
         handleInputChange,
         handleChooseCategory,
         handleCreateOption,
-        handleCreatePoll,
-        handleToggleDropdown } = useContext(CreatePollContext)
+        handleCreatePoll
+         } = useContext(CreatePollContext)
 
     return (
         <>
@@ -48,7 +46,6 @@ const CreatePollComp = () => {
                                 <Button onClick={() => handleChooseCategory('Video Games')} className={category === 'Video Games' ? 'buttonStylesSelected' : 'buttonStyles'}><MdVideogameAsset/></Button>
                                 <Button onClick={() => handleChooseCategory('Music')}  className={category === 'Music' ? 'buttonStylesSelected' : 'buttonStyles'}><FaMusic/></Button>
                                 <Button onClick={() => handleChooseCategory('Other')}  className={category === 'Other' ? 'buttonStylesSelected' : 'buttonStyles'}><FaQuestion/></Button>
-
                             </ButtonGroup>
                         </ButtonToolbar>
                     </FormGroup>
