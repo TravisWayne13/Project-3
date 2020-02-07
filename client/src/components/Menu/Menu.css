@@ -16,8 +16,8 @@ button:focus {
   left: 0;
 }
 
-h4, h5 {
-  font-weight: 400 !important;
+.user-info h4, .menu-item h5 {
+  font-weight: 400;
 }
 
 .user-info h4 {
@@ -25,7 +25,7 @@ h4, h5 {
   margin-bottom: 0;
 }
 
-h5 {
+.menu-item h5 {
   font-size: 16px !important;
   text-align: left !important;
   margin-bottom: 0 !important;
