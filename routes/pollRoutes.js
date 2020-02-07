@@ -27,16 +27,21 @@ module.exports = app => {
 
   // Get one Poll by id
   app.get('/api/polls/id/:id', (req, res) => {
+    console.log(req.params.id)
     Poll.findById(req.params.id)
-      .populate('comments')
-      .then(poll => res.json({poll, comments: poll.comments}))
+      // .populate('comments')
+      // comments: poll.comments
+      .then(poll => {
+        console.log(poll)
+        res.json(poll)}
+        )
       .catch(err => console.error(err))
   })
 
   // Post one Poll
   app.post('/api/polls', (req, res) => {
     Poll.create(req.body)
-      .then(() => res.sendStatus(200))
+      .then((poll) => res.json(poll))
       .catch(err => console.error(err))
   })
 
