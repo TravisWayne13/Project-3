@@ -1,8 +1,7 @@
 import axios from 'axios'
-
 // Change out functions
 const PollAPI = {
-  // Poll Routes
+// Poll Routes
   getNewestPolls: () => axios.get('/api/polls'),
   getTopPolls: () => axios.get('/api/top/polls'),
   getCategories: (category) => axios.get(`/api/polls/${category}`),
