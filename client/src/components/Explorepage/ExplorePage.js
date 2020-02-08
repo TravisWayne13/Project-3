@@ -5,17 +5,45 @@ import './Explorepage.css'
 import commentsSvg from '../../images/comments.svg'
 import votesSvg from '../../images/votes.svg'
 import avatar from '../../images/Avatar.svg'
+import edit from '../../images/Edit.svg'
 import moment from 'moment'
 
-const { getNewestPolls } = PollAPI
+const { getNewestPolls, updateOnePoll } = PollAPI
 
 const ExplorePageComp = _ => {
 
-  const [data, setData] = useState({ polls: [] })
+  const [data, setData] = useState({ 
+    polls: [],
+    selectedValue: ''
+   })
 
   data.showPoll = e => {
-    e.target.nextSibling.style.display = 'block'
+    e.target.nextSibling.style.display = e.target.nextSibling.style.display === 'block' ? 'none' : 'block'
+    e.target.text = e.target.text === 'View Poll' ? 'Hide Poll' : 'View Poll'
   }
+
+  data.showComments = e => {
+    e.target.nextSibling.style.display = e.target.nextSibling.style.display === 'block' ? 'none' : 'block'
+    e.target.text = e.target.text === 'View Comments' ? 'Hide Comments' : 'View Comments'
+  }
+
+  data.onSelectBox = ({ target }) => {
+    setData({ ...data, selectedValue: target.value })
+    console.log(target.value)
+  }
+
+  data.updatePoll = e => {
+    e.preventDefault()
+    let property = `votes.${data.selectedValue}`
+    updateOnePoll(e.target.id, { $inc: { [property] : 1 }},
+    function(err, result){
+        if(err){
+            console.log(err)
+        }
+    console.log(result)
+    })
+
+}
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +69,7 @@ const ExplorePageComp = _ => {
             </div>
             <div>
               <img className="pollCommentsSvg" src={commentsSvg}/>
-              <p className="pollCommentsCount">{Object.keys(poll.votes).reduce((sum,key)=>sum+parseFloat(poll.votes[key]||0),0)}</p>
+              <p className="pollCommentsCount">{poll.comments.length}</p>
               <img className="pollVotesSvg" src={votesSvg}/>
               <p className="pollVotesCount">{Object.keys(poll.votes).reduce((sum,key)=>sum+parseFloat(poll.votes[key]||0),0)}</p>
             </div>
@@ -52,14 +80,30 @@ const ExplorePageComp = _ => {
                 <form>
                   {poll.options.map(option => (
                     <p>
-                      <input type="radio"  name={poll._id} value={option} />
-                      <label for={option}>{option}</label>
+                      <input type="radio" onClick={data.onSelectBox} id={option} name={poll._id} value={option} />
+                      <label htmlFor={option}>{option}</label>
                     </p>
                   ))}
-                  <button>Vote Now</button>
+                  <button id={poll._id} onClick={data.updatePoll}>Vote Now</button>
                 </form>
               </div>
               {(poll.imageLink !== '' ? <img className="pollImage" src={poll.imageLink} /> : null)}
+            </div>
+            <a className="viewComments" onClick={data.showComments}>View Comments</a>
+            <div className="pollComments">
+            {poll.comments.map(comment => (
+              <div className="commentCard">
+              {(comment.user._id === JSON.parse(sessionStorage.getItem('userInfo')).userId ? <img className="commentEdit" src={edit} alt="Edit" /> : null)}
+                <div className="commentCreated">
+                  <img className="commentAvatar" alt="User Avatar" src={comment.user.userAvatar ? comment.user.userAvatar : avatar } />
+                  <h5 className="commentUsername">{comment.user.username}</h5>
+                  <h6 className="commentTimeStamp">{
+                    (moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') > 60 ? (moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') > 12 ? moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('MM/DD/YYYY hh:mm a') : moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') + ' Hours ago') : moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') + ' Minutes ago')
+                  }</h6>
+                  </div>
+                <h4 className="commentCardComment">{comment.comment}</h4>
+              </div>
+            ))}
             </div>
           </div>
           ))}
