@@ -20,6 +20,11 @@
 .pollAvatar {
   grid-row: span 2;
   margin: auto;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
 }
 
 .pollUsername {
@@ -47,13 +52,18 @@
   font-weight: 300;
 }
 
-.pollCard a.viewPoll, .pollCard a.viewComments {
+.pollCard button.viewPoll, .pollCard button.viewComments {
  color: #6979F8;
  cursor: pointer;
- margin-bottom: 4px;
+ background-color: transparent;
+ border: none;
+ text-decoration: none;
+ display: inline;
+ margin: 0 0 4px;
+ padding: 0;
 }
 
-.pollCard a.viewPoll:hover, .pollCard a.viewComments:hover {
+.pollCard button.viewPoll:hover, .pollCard button.viewComments:hover {
   color: rgb(111, 127, 245);
  }
 
@@ -119,10 +129,11 @@
   margin-top: 10px;
 }
 
-.viewComments {
+.pollCard button.viewComments {
   margin-top: 12px;
   font-size: 12px;
   grid-column-start: 2;
+  width: 88px;
 }
 
 .pollComments {
@@ -150,6 +161,11 @@
   width: 30px;
   height: 30px;
   margin-top: 4px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
 }
 
 .commentUsername {

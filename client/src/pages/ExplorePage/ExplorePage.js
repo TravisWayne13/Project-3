@@ -1,9 +1,7 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ExplorePageComp from '../../components/ExplorePage'
 import PollAPI from '../../utils/PollAPI'
 import cookie from 'react-cookies'
-import { get } from 'mongoose'
-import UserContext from '../../utils/Usercontext'
 
 const { authorize } = PollAPI
 
