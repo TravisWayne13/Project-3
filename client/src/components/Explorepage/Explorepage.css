@@ -118,3 +118,21 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+
+.btn {
+  border: 0;
+}
+
+.post {
+  background-color: #7B68EE !important;
+}
+.modal-header {
+  color: white !important;
+}
+.modal-content {
+  background-color: #181818 !important;
+}
+
+.MuiInputBase-input, #outlined-basic-label, .MuiInputLabel-outlined {
+  color: white !important;
+}
