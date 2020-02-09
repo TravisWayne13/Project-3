@@ -21,7 +21,7 @@
   margin-top: 20px;
 }
 
-#category{
+.category{
   background-color: #7B68EE !important;
   border-radius: 0px !important;
   width: 175px !important;
@@ -33,12 +33,12 @@
   text-align: center !important;
 }
 
-.container {
+/* .container {
   padding: 0px !important;
+} */
 
-}
 @media screen and (min-width: 766px) {
-  #category {
+  .category {
     width: 300px !important;
     height: 300px !important;
   }

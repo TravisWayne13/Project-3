@@ -25,7 +25,7 @@ const SignUp = _ => {
     const { name, value } = e.target
     let errors = userState.errors
     const validEmailRegex = 
-    RegExp(/^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/i)
+    RegExp(/^[^@\s]+@[^@\s.]+\.[^@.\s]+$/i)
 
     // Validation Switch
     switch (name) {

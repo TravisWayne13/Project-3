@@ -6,10 +6,7 @@ import poll from '../../images/Poll.svg'
 import create from '../../images/Create.svg'
 import rightChevron from '../../images/Right-Chevron.svg'
 import { slide as Nav } from 'react-burger-menu'
-import PollAPI from '../../utils/PollAPI'
 import cookie from 'react-cookies'
-
-const { authorize } = PollAPI
 
 const Menu = () => {
 

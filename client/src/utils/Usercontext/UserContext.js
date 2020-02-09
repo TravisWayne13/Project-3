@@ -8,6 +8,7 @@ const UserContext = createContext({
   formValid: true,
   intitalLoad: true,
   token: '',
+  polls: '',
   errors: {
     username: '',
     email: '',
