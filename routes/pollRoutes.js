@@ -2,33 +2,33 @@ const { Poll, Comment } = require('../models')
 const passport = require('passport')
 
 module.exports = app => {
-  
+
   // Get all Polls, Newest first
   app.get('/api/polls', (req, res) => {
-    Poll.find({}).sort({createdAt: -1})
+    Poll.find({}).sort({ createdAt: -1 })
       .populate('user')
       .populate('comments')
-      .populate({path: 'comments', populate: [{path: 'user'}]})
+      .populate({ path: 'comments', populate: [{ path: 'user' }] })
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })
 
   // Get all Polls, Top first
   app.get('/api/top/polls', (req, res) => {
-    Poll.find({}).sort({'Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0': -1})
+    Poll.find({}).sort({ 'Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0': -1 })
       .populate('user')
       .populate('comments')
-      .populate({path: 'comments', populate: [{path: 'user'}]})
+      .populate({ path: 'comments', populate: [{ path: 'user' }] })
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })
 
   // Get Polls by Category
   app.get('/api/polls/:category', (req, res) => {
-    Poll.find({'category': req.params.category})
+    Poll.find({ 'category': req.params.category })
       .populate('user')
       .populate('comments')
-      .populate({path: 'comments', populate: [{path: 'user'}]})
+      .populate({ path: 'comments', populate: [{ path: 'user' }] })
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
   })
@@ -40,8 +40,13 @@ module.exports = app => {
       // .populate('comments')
       .then(poll => {
         console.log(poll)
-        res.json({poll, comments: poll.comments})}
-        )
+        if (!poll) {
+          res.json({ data: [] });
+          return;
+        }
+        res.json({ poll, comments: poll.comments })
+      }
+      )
       .catch(err => console.error(err))
   })
 

@@ -5,11 +5,11 @@ const DisplayPollContext = createContext({
     headline: '',
     category: '',
     imageLink: '',
-    options: '',
+    options: [],
     selectedValue: '',
     votes: '',
-    onSelectBox : () => { },
-    updatePoll : () => {}
+    onSelectBox: () => { },
+    updatePoll: () => { }
 })
 
 export default DisplayPollContext
