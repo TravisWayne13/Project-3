@@ -15,14 +15,12 @@ const CreatePollComp = () => {
 
     const { title,
         category,
-        isDropdownOpen,
         imageLink,
         options,
         handleInputChange,
         handleChooseCategory,
         handleCreateOption,
-        handleCreatePoll,
-        handleToggleDropdown } = useContext(CreatePollContext)
+        handleCreatePoll } = useContext(CreatePollContext)
 
     return (
         <>

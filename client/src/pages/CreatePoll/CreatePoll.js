@@ -64,7 +64,7 @@ const CreatePoll = _ => {
     createPollState.handleCreateOption = () => {
         let options = JSON.parse(JSON.stringify(createPollState.options))
         options.push('')
-        setCreatePollState({... createPollState, options})
+        setCreatePollState({...createPollState, options})
     }
 
     createPollState.handleToggleDropdown = () => {
