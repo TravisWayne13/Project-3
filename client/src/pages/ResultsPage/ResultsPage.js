@@ -4,23 +4,29 @@ import Menu from '../../components/Menu'
 import {Container} from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import axios from 'axios'
+import PollAPI from '../../utils/PollAPI'
+
 const ResultsPage = _ => {
+
+const{getOnePoll} = PollAPI
 
 const [resultsState, setResultsState] = useState({
 optionLabels: [],
-votes: [],
-
+votes: {},
+pollTitle: ''
 })
 
 useEffect(() => {
-        axios.get('/api/polls/id/5e3c5a760817bf448c20c6d0')
+        getOnePoll('5e3cdb7351b20165cfe90290')
         .then(({data}) => {
         console.log(data)
         setResultsState({
         optionLabels: data.options,
-        votes: data.votes
+        votes: data.votes,
+        pollTitle : data.headline
         })
         })
+        .then(() => {console.log(resultsState)})
         .catch(err => {console.log(err)} )
     },[])
 
