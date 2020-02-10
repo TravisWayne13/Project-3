@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PollResults from '../../components/PollResults'
 import Menu from '../../components/Menu'
-import {Container} from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import axios from 'axios'
 import PollAPI from '../../utils/PollAPI'

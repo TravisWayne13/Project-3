@@ -7,7 +7,11 @@ module.exports = (model, Schema) => {
     imageLink: String,
     votes: { type: Schema.Types.Mixed, required: true },
     user: { type: Schema.Types.ObjectId, ref: 'User'},
-  }, {timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}})
+  }, 
+  { 
+    toJSON: { virtuals: true },
+    timestamps: {createdAt: 'createdAt', updatedAt: 'updatedAt'}
+  })
 
   Poll.virtual('comments', {
     ref: 'Comment',

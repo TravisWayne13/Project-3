@@ -19,8 +19,7 @@ const CreatePollComp = () => {
         handleInputChange,
         handleChooseCategory,
         handleCreateOption,
-        handleCreatePoll
-         } = useContext(CreatePollContext)
+        handleCreatePoll } = useContext(CreatePollContext)
 
     return (
         <>

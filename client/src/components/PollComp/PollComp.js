@@ -1,7 +1,7 @@
 import React, { useContext} from 'react'
 import DisplayPollContext from '../../utils/DisplayPollContext'
 
-import { Container, Jumbotron, FormGroup, Label, Input, Button, Card, CardImg , CustomInput} from 'reactstrap'
+import { Container, Jumbotron, FormGroup, Button, Card, CardImg , CustomInput} from 'reactstrap'
 import './PollComp.css'
 
 
@@ -15,7 +15,6 @@ const PollComp = () => {
         category,
         imageLink,
         options,
-        selectedValue,
         onSelectBox,
         updatePoll
      } = useContext(DisplayPollContext)
