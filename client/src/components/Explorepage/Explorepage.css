@@ -14,9 +14,7 @@
   grid-column-start: 2;
   align-items: space-between;
 }
-.viewResults{
-  margin-left: 15px;
-}
+
 .pollCreated {
   grid-column: span 2;
   display: grid;
