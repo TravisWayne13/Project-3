@@ -10,14 +10,17 @@ const PollComp = () => {
 
     
 
-    const { 
+    const {id,
         headline,
         category,
         imageLink,
         options,
         onSelectBox,
-        updatePoll
+        updatePoll,
+        viewResults
      } = useContext(DisplayPollContext)
+
+
   
 
         return (
@@ -50,6 +53,8 @@ const PollComp = () => {
                     <br/>
 
                     <Button onClick={updatePoll} className="btn-lg btn-dark btn-block buttonStyles">Submit</Button>
+                    <br/>
+                    <Button onClick={viewResults} className="btn-lg btn-dark btn-block buttonStyles">View Results</Button>
 
                 </FormGroup>
 

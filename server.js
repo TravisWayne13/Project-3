@@ -30,8 +30,7 @@ passport.use(new JWTStrategy({
 
 require('./routes')(app)
 
-
-// process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 
+process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 
 require('mongoose')
   .connect('mongodb://localhost:27017/polls', {
     useCreateIndex: true,
@@ -39,5 +38,5 @@ require('mongoose')
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
-  .then(() => app.listen(process.env.PORT || 3001))
+  .then(() => app.listen(process.env.PORT || 2998))
   .catch(e => console.error(e))
