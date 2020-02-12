@@ -15,7 +15,7 @@ const{getOnePoll} = PollAPI
 const [resultsState, setResultsState] = useState({
 optionLabels: [],
 votes: {},
-pollTitle: ''
+pollTitle: '',
 })
 
 useEffect(() => {
@@ -23,6 +23,7 @@ useEffect(() => {
         .then(({data}) => {
         console.log(data.poll)
         setResultsState({
+        id: urlId,
         optionLabels: data.poll.options,
         votes: data.poll.votes,
         pollTitle : data.poll.headline

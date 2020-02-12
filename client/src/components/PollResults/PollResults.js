@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import { Container, Card, Button, CardTitle, CardText, CardHeader, CardBody, CardFooter , Progress, Label} from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
+import './PollResults.css'
 
 const PollResults = () => {
 
 const {
     optionLabels,
     votes,
-    pollTitle
+    pollTitle,
 } = useContext(DisplayResultsContext)
 
 
@@ -35,9 +36,8 @@ const {
                        
                    
                     </CardText>
-                    <Button>
-                        Back to Poll
-                    </Button>
+                    <Button className="buttonStyles" onClick={() => {window.location=`/pollpage/${id}`}}>Back to Poll</Button>
+
                 </CardBody>
                 {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
             </Card>
