@@ -4,8 +4,11 @@ import Menu from '../../components/Menu'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import axios from 'axios'
 import PollAPI from '../../utils/PollAPI'
+import {useParams} from 'react-router-dom'
 
 const ResultsPage = _ => {
+
+let {urlId} = useParams()
 
 const{getOnePoll} = PollAPI
 
@@ -16,13 +19,13 @@ pollTitle: ''
 })
 
 useEffect(() => {
-        getOnePoll('5e3cdb7351b20165cfe90290')
+        getOnePoll(`${urlId}`)
         .then(({data}) => {
-        console.log(data)
+        console.log(data.poll)
         setResultsState({
-        optionLabels: data.options,
-        votes: data.votes,
-        pollTitle : data.headline
+        optionLabels: data.poll.options,
+        votes: data.poll.votes,
+        pollTitle : data.poll.headline
         })
         })
         .then(() => {console.log(resultsState)})

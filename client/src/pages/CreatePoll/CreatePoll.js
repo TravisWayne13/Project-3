@@ -13,6 +13,7 @@ const CreatePoll = _ => {
         title: '',
         imageLink: '',
         category: '',
+        urlId : '',
         options: ['',''],
         votes: [{},{}],
         isDropdownOpen: false
@@ -55,6 +56,7 @@ const CreatePoll = _ => {
         })
         .then(({data}) => {
             console.log(data)
+            setCreatePollState({...createPollState, urlId : data._id})
             
         })
         .catch(err => {console.log(err)})

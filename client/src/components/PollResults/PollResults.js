@@ -18,7 +18,7 @@ const {
             <Card>
                 <CardHeader>Poll Results</CardHeader>
                 <CardBody>
-                    <CardTitle>{pollTitle}</CardTitle>
+                    <CardTitle><h5>{pollTitle}</h5></CardTitle>
                     <CardText>
                     {
     
@@ -35,9 +35,11 @@ const {
                        
                    
                     </CardText>
-                    <Button>Go Somewhere</Button>
+                    <Button>
+                        Back to Poll
+                    </Button>
                 </CardBody>
-                <CardFooter>{Object.values(votes)}</CardFooter>
+                {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
             </Card>
 
         </Container>

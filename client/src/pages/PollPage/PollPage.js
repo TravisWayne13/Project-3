@@ -3,9 +3,14 @@ import PollComp from '../../components/PollComp'
 import Menu from '../../components/Menu'
 import DisplayPollContext from '../../utils/DisplayPollContext'
 import PollAPI from '../../utils/PollAPI'
+import {useParams} from 'react-router-dom'
+
+// import { get } from 'mongoose'
 
 
 const PollPage = _ => {
+
+let {urlId} = useParams()
 
 const {updateOnePoll, getOnePoll} = PollAPI
 
@@ -36,45 +41,36 @@ const {updateOnePoll, getOnePoll} = PollAPI
         })
 
     }
-        
-//     userSetState({...userState, intitalLoad: false,token: cookie.load('token')})
-//     // If not first run, check if authorized
-//     if (!userState.intitalLoad) {
-//       authorize(userState.token)
-//         .then(res => {
-//         })
-//         // If not authorized, send to signin page
-//         .catch(err => {
-//           console.error(err)
-//           window.location.href = '/signin'
-//         })
-//     }
-//   }, [userState.token])
-    
+  DisplayPollState.viewResults = () => {
+      console.log(DisplayPollState.id)
+    window.location = `/resultspage/${DisplayPollState.id}`
+  }
       
 
-    useEffect(() => {
+useEffect(() => {
+console.log(urlId)
+console.log('Page Loading...')
+getOnePoll(`${urlId}`)
+.then(({data}) => {
+console.log(data.poll)
+setDisplayPollState({
+id: data.poll._id,
+headline: data.poll.headline,
+category: data.poll.category,
+options: data.poll.options,
+imageLink: data.poll.imageLink,
+votes: data.poll.votes,
+})
 
-    async function fetchData() {
-            let response = await getOnePoll('5e3cf1a99d0f1b6a5eae6e28')
-            let data = await response.data;
-            console.log(data);
-        setDisplayPollState({
-        id: data._id,
-        headline: data.headline,
-        category: data.category,
-        options: data.options,
-        imageLink: data.imageLink,
-        votes: data.votes,
-        })
-
-          }
-        fetchData()
-        console.log(DisplayPollState)
-
+})
+.catch(err => {console.log(err)})
+// console.log(DisplayPollState)
+}
+,[])
         
        
-    },[])
+
+
 
 
 

@@ -6,6 +6,7 @@ const CreatePollContext = createContext({
     imageLink: '',
     options: [],
     votes: [],
+    urlId: '',
     handleAddOption: () => { },
     handleInputChange: () => { },
     handleChooseCategory: () => { },
