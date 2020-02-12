@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
-import { GoogleLogin } from 'react-google-login'
 import './SignIn.css'
 import UserContext from '../../utils/Usercontext'
 
@@ -22,7 +21,7 @@ const SignInComp = _ => {
 
     return (
         <Container>
-            <Form>
+            <Form onSubmit={handleFormSubmit}>
                 <Jumbotron className="jumbotron" fluid>
                     <Container fluid>
                         <h2 className="colorSet">Sign In</h2>
@@ -37,15 +36,10 @@ const SignInComp = _ => {
                     <Label className="colorSet">Password</Label>
                     <Input style={loginError ? errorStyle : {border: '0'}} type="password" name="password" value={password} onChange={handleInputChange} placeholder="ex. password123" />
                 </FormGroup>
-                <Button className="btn-lg btn-dark btn-block buttonStyles" onClick={handleFormSubmit}>
+                <Button type="submit" className="btn-lg btn-dark btn-block buttonStyles" onClick={handleFormSubmit}>
                     Login
                 </Button>
                 <p style={loginError ? errorLabel : {display: 'none'}}>Login Invalid, please try again</p>
-                <div  className="text-center pt-3 colorSet">
-                    Or continue with your google login info
-                </div>
-                <br />
-                <GoogleLogin className="googleLink"/>
                 <br />
                 <br />
                 <div className="text-center colorSet">

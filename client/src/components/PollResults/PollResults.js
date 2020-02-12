@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Container, Card, Button, CardTitle, CardText, CardHeader, CardBody, CardFooter , Progress, Label} from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
+import './PollResults.css'
 
 const PollResults = () => {
 
@@ -15,17 +16,17 @@ const {
     return (
 
         <Container>
-            <Card>
+            <Card className="pollResultCard">
                 <CardHeader>Poll Results</CardHeader>
                 <CardBody>
                     <CardTitle><h5>{pollTitle}</h5></CardTitle>
-                    <CardText>
+                    <div>
                     {
     
                         optionLabels.map((option, i) => (
-                            <div>
+                            <div key={option}>
                             <Label>{option}</Label>
-                            <Progress data-index={i} animated value={34} />
+                            <Progress color="white" data-index={i} animated value={(votes[option]/Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0))*100} />
                             <br/>
                             </div>
    
@@ -34,9 +35,9 @@ const {
                         }
                        
                    
-                    </CardText>
-                    <Button>
-                        Back to Poll
+                    </div>
+                    <Button onClick={() => {window.location=`/explore`}}>
+                        Back to Explore Page
                     </Button>
                 </CardBody>
                 {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
