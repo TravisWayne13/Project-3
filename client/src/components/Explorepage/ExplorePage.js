@@ -5,17 +5,17 @@ import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/sty
 import deepPurple from '@material-ui/core/colors/deepPurple'
 import TextField from '@material-ui/core/TextField'
 import PollAPI from '../../utils/PollAPI'
+import UserContext from '../../utils/Usercontext'
 import './Explorepage.css'
 import commentsSvg from '../../images/comments.svg'
 import votesSvg from '../../images/votes.svg'
 import avatar from '../../images/Avatar.svg'
 import edit from '../../images/Edit.svg'
 import moment from 'moment'
-​
+
 const { getNewestPolls, updateOnePoll, getCategories } = PollAPI
-​
 const ExplorePageComp = _ => {
-​
+
   const useStyles = makeStyles(theme => ({
     root: {
       '& > *': {
@@ -41,22 +41,22 @@ const ExplorePageComp = _ => {
     selectedValue: '',
     searchCategory: ''
    })
-​
+
   data.showPoll = e => {
     e.target.nextSibling.style.display = e.target.nextSibling.style.display === 'block' ? 'none' : 'block'
     e.target.text = e.target.text === 'View Poll' ? 'Hide Poll' : 'View Poll'
   }
-​
+
   data.showComments = e => {
     e.target.nextSibling.style.display = e.target.nextSibling.style.display === 'block' ? 'none' : 'block'
     e.target.text = e.target.text === 'View Comments' ? 'Hide Comments' : 'View Comments'
   }
-​
+
   data.onSelectBox = ({ target }) => {
     setData({ ...data, selectedValue: target.value })
     console.log(target.value)
   }
-​
+
   data.updatePoll = e => {
     e.preventDefault()
     let property = `votes.${data.selectedValue}`
@@ -68,7 +68,7 @@ const ExplorePageComp = _ => {
     console.log(result)
     })
   }
-​
+
   data.updateSearch = search => {
     console.log('in search')
     const fetchData = async () => {
@@ -79,7 +79,7 @@ const ExplorePageComp = _ => {
     }
     fetchData()
   }
-​
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await getNewestPolls()
@@ -89,7 +89,7 @@ const ExplorePageComp = _ => {
     }
     fetchData()
   },[])
-​
+
   return(
       <>
       <NavBar updateSearch={data.updateSearch} />
@@ -103,7 +103,7 @@ const ExplorePageComp = _ => {
             }</h6>
           </div>
           <div>
-            <img alt="comments" className="pollCommentsSvg" src={commentsSvg}/>
+            <img alt="comments" onClick={toggle} className="pollCommentsSvg" src={commentsSvg}/>
             <div>
                 <Modal isOpen={modal} toggle={toggle}>
                   <ModalHeader toggle={toggle}>
@@ -163,4 +163,3 @@ const ExplorePageComp = _ => {
   )
 }
 export default ExplorePageComp
-Collapse

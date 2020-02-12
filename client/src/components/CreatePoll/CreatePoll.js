@@ -1,26 +1,33 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CreatePollContext from '../../utils/CreatePollContext'
-import { Button, ButtonGroup, ButtonToolbar, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
+import { Button, ButtonGroup, ButtonToolbar, Form, FormGroup, Label, Badge, Input, Container, Jumbotron, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { IoIosBasketball } from 'react-icons/io';
-import { MdLocalMovies} from 'react-icons/md'
-import { FaPizzaSlice} from 'react-icons/fa'
-import { MdVideogameAsset} from 'react-icons/md'
-import { FaMusic} from 'react-icons/fa'
-import { FaQuestion} from 'react-icons/fa'
+import { MdLocalMovies } from 'react-icons/md'
+import { FaPizzaSlice } from 'react-icons/fa'
+import { MdVideogameAsset } from 'react-icons/md'
+import { FaMusic } from 'react-icons/fa'
+import { FaQuestion } from 'react-icons/fa'
 import './CreatePoll.css'
 
 const CreatePollComp = () => {
 
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
 
 
     const { title,
         category,
         imageLink,
         options,
+        urlId,
         handleInputChange,
         handleChooseCategory,
         handleCreateOption,
         handleCreatePoll } = useContext(CreatePollContext)
+
+
+
 
     return (
         <>
@@ -40,13 +47,12 @@ const CreatePollComp = () => {
 
                         <ButtonToolbar>
                             <ButtonGroup>"
-                                <Button onClick={() => handleChooseCategory('Sports')}  className={category === 'Sports' ? 'buttonStylesSelected' : 'buttonStyles'}><IoIosBasketball/></Button>
-                                <Button onClick={() => handleChooseCategory('Movies')}  className={category === 'Movies' ? 'buttonStylesSelected' : 'buttonStyles'}><MdLocalMovies/></Button>
-                                <Button onClick={() => handleChooseCategory('Food')}  className={category === 'Food' ? 'buttonStylesSelected' : 'buttonStyles'}><FaPizzaSlice/></Button>
-                                <Button onClick={() => handleChooseCategory('Video Games')} className={category === 'Video Games' ? 'buttonStylesSelected' : 'buttonStyles'}><MdVideogameAsset/></Button>
-                                <Button onClick={() => handleChooseCategory('Music')}  className={category === 'Music' ? 'buttonStylesSelected' : 'buttonStyles'}><FaMusic/></Button>
-                                <Button onClick={() => handleChooseCategory('Other')}  className={category === 'Other' ? 'buttonStylesSelected' : 'buttonStyles'}><FaQuestion/></Button>
-
+                                <Button onClick={() => handleChooseCategory('Sports')} className={category === 'Sports' ? 'buttonStylesSelected' : 'buttonStyles'}><IoIosBasketball /></Button>
+                                <Button onClick={() => handleChooseCategory('Movies')} className={category === 'Movies' ? 'buttonStylesSelected' : 'buttonStyles'}><MdLocalMovies /></Button>
+                                <Button onClick={() => handleChooseCategory('Food')} className={category === 'Food' ? 'buttonStylesSelected' : 'buttonStyles'}><FaPizzaSlice /></Button>
+                                <Button onClick={() => handleChooseCategory('Video Games')} className={category === 'Video Games' ? 'buttonStylesSelected' : 'buttonStyles'}><MdVideogameAsset /></Button>
+                                <Button onClick={() => handleChooseCategory('Music')} className={category === 'Music' ? 'buttonStylesSelected' : 'buttonStyles'}><FaMusic /></Button>
+                                <Button onClick={() => handleChooseCategory('Other')} className={category === 'Other' ? 'buttonStylesSelected' : 'buttonStyles'}><FaQuestion /></Button>
                             </ButtonGroup>
                         </ButtonToolbar>
                     </FormGroup>
@@ -70,6 +76,17 @@ const CreatePollComp = () => {
 
                     <Button onClick={handleCreatePoll} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
                 </Form>
+                <br />
+                <Button className="buttonStyles generateLinkBtn" onClick={toggle}>Generate Link</Button>
+                <Modal isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle}>Poll Link</ModalHeader>
+                    <ModalBody>
+                        <Button className="buttonStyles" onClick={() => {window.location=`/pollpage/${urlId}`}}>View Poll</Button>
+                    </ModalBody>
+                    <ModalFooter>
+
+                    </ModalFooter>
+                </Modal>
             </Container>
         </>
     )

@@ -3,10 +3,16 @@ import PollComp from '../../components/PollComp'
 import Menu from '../../components/Menu'
 import DisplayPollContext from '../../utils/DisplayPollContext'
 import PollAPI from '../../utils/PollAPI'
-import axios from 'axios'
+import {useParams} from 'react-router-dom'
+
+// import { get } from 'mongoose'
+
+
 const PollPage = _ => {
 
-const {updateOnePoll} = PollAPI
+let {urlId} = useParams()
+
+const {updateOnePoll, getOnePoll} = PollAPI
 
     const [DisplayPollState, setDisplayPollState] = useState({
         id: '',
@@ -35,26 +41,36 @@ const {updateOnePoll} = PollAPI
         })
 
     }
-        
-    
-    
+  DisplayPollState.viewResults = () => {
+      console.log(DisplayPollState.id)
+    window.location = `/resultspage/${DisplayPollState.id}`
+  }
       
 
-    useEffect(() => {
-        axios.get('/api/polls/id/5e3cee2f1bb57d103008e15e')
-        .then(({data}) => {
-        console.log(data)
-         setDisplayPollState({
-        id: data._id,
-        headline: data.headline,
-        category: data.category,
-        options: data.options,
-        imageLink: data.imageLink,
-        votes: data.votes,
-        })
-        })
-        .catch(err => {console.log(err)} )
-    },[])
+useEffect(() => {
+console.log(urlId)
+console.log('Page Loading...')
+getOnePoll(`${urlId}`)
+.then(({data}) => {
+console.log(data.poll)
+setDisplayPollState({
+id: data.poll._id,
+headline: data.poll.headline,
+category: data.poll.category,
+options: data.poll.options,
+imageLink: data.poll.imageLink,
+votes: data.poll.votes,
+})
+
+})
+.catch(err => {console.log(err)})
+// console.log(DisplayPollState)
+}
+,[])
+        
+       
+
+
 
 
 

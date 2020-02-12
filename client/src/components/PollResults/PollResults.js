@@ -1,47 +1,47 @@
-import React, {  useContext } from 'react'
-import { Container } from 'reactstrap'
-import { Bar } from 'react-chartjs-2'
+import React, { useContext } from 'react'
+import { Container, Card, Button, CardTitle, CardText, CardHeader, CardBody, CardFooter , Progress, Label} from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 
 const PollResults = () => {
-   
-    const { 
-        optionLabels,
-        votes
-     } = useContext(DisplayResultsContext)
-  
 
-    const dataSet = {
-        labels: optionLabels,
-        data: [
-            {
-                label: 'My First dataset',
-                backgroundColor: 'rgba(245,241,247,100)',
-                borderColor: 'rgba(245,241,247,100)',
-                borderWidth: 1,
-                hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                hoverBorderColor: 'rgba(255,99,132,1)',
-                data: votes
-            }
-        ]
-    };
+const {
+    optionLabels,
+    votes,
+    pollTitle
+} = useContext(DisplayResultsContext)
+
 
 
     return (
 
         <Container>
+            <Card>
+                <CardHeader>Poll Results</CardHeader>
+                <CardBody>
+                    <CardTitle><h5>{pollTitle}</h5></CardTitle>
+                    <CardText>
+                    {
+    
+                        optionLabels.map((option, i) => (
+                            <div>
+                            <Label>{option}</Label>
+                            <Progress data-index={i} animated value={34} />
+                            <br/>
+                            </div>
+   
+                        )) 
 
-            <div>
-                <h2>Bar Example (custom size)</h2>
-                <Bar
-                    data={dataSet}
-                    width={100}
-                    height={50}
-                    options={{
-                        maintainAspectRatio: false
-                    }}
-                />
-            </div>
+                        }
+                       
+                   
+                    </CardText>
+                    <Button>
+                        Back to Poll
+                    </Button>
+                </CardBody>
+                {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
+            </Card>
+
         </Container>
 
 
