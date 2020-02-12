@@ -21,6 +21,10 @@
   margin-top: 20px;
 }
 
+.MuiButtonBase-root button:focus{
+  outline: 0;
+}
+
 .category{
   background-color: #7B68EE !important;
   border-radius: 0px !important;
