@@ -8,7 +8,7 @@ module.exports = app => {
   app.post('/api/register', (req, res) => {
     // Generate gravatar img link
     const hash = crypto.createHash('md5').update(req.body.email).digest("hex")
-    const avatar = `https://www.gravatar.com/avatar/${hash}?s=50&d=https%3A%2F%2Fs3.amazonaws.com%2F37assets%2Fsvn%2F765-default-avatar.png`
+    const avatar = `https://www.gravatar.com/avatar/${hash}?s=100&d=https%3A%2F%2Fs3.amazonaws.com%2F37assets%2Fsvn%2F765-default-avatar.png`
     const { email, username, } = req.body
     User.register(new User({ email, username, avatar }),
       req.body.password, (e, user) => {
