@@ -143,6 +143,10 @@
   background-color: #181818 !important;
 }
 
+.MuiFormControl-root {
+  width: 110% !important;
+}
+
 .MuiInputBase-input, #outlined-basic-label, .MuiInputLabel-outlined {
   color: white !important;
 }

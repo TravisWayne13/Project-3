@@ -5,15 +5,15 @@ import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/sty
 import deepPurple from '@material-ui/core/colors/deepPurple'
 import TextField from '@material-ui/core/TextField'
 import PollAPI from '../../utils/PollAPI'
-import UserContext from '../../utils/Usercontext'
 import './Explorepage.css'
 import commentsSvg from '../../images/comments.svg'
 import votesSvg from '../../images/votes.svg'
 import avatar from '../../images/Avatar.svg'
 import edit from '../../images/Edit.svg'
 import moment from 'moment'
+import Axios from 'axios';
 
-const { getNewestPolls, updateOnePoll, getCategories } = PollAPI
+const { getNewestPolls, updateOnePoll, getCategories, createComment } = PollAPI
 const ExplorePageComp = _ => {
 
   const useStyles = makeStyles(theme => ({
@@ -39,7 +39,8 @@ const ExplorePageComp = _ => {
   const [data, setData] = useState({ 
     polls: [],
     selectedValue: '',
-    searchCategory: ''
+    searchCategory: '',
+    comment: ''
    })
 
   data.showPoll = e => {
@@ -56,6 +57,17 @@ const ExplorePageComp = _ => {
     setData({ ...data, selectedValue: target.value })
     console.log(target.value)
   }
+
+  data.handleInputChange = e => {
+    setData({...data, [e.target.name]: e.target.value})
+  }
+
+ data.createComment = (e, pollId) => {
+  e.preventDefault()
+
+  createComment({comment: data.comment, user: JSON.parse(sessionStorage.getItem('userInfo')).userId, poll: pollId})
+
+ }
 
   data.updatePoll = e => {
     e.preventDefault()
@@ -90,6 +102,8 @@ const ExplorePageComp = _ => {
     fetchData()
   },[])
 
+
+
   return(
       <>
       <NavBar updateSearch={data.updateSearch} />
@@ -109,16 +123,17 @@ const ExplorePageComp = _ => {
                   <ModalHeader toggle={toggle}>
                     <img className="pollAvatar" alt="User Avatar" src={poll.user.userAvatar ? poll.user.userAvatar : avatar } />
                   </ModalHeader>
-                  <ModalBody>
                     <form className={classes.root} noValidate autoComplete="off">
+                  <ModalBody>
                     <ThemeProvider theme={theme}>
-                    <TextField id="outlined-basic" label="Comment" variant="outlined" />
+                      <p>
+                    <TextField id="outlined-basic" label="Comment" name="comment" variant="outlined" onChange={data.handleInputChange} value={data.comment} />
+                      </p>
                     </ThemeProvider>
-                    </form>
+                    <Button className="post" type="submit" onClick={(e) => { data.createComment(e, poll._id); toggle();}}>Post</Button>
                   </ModalBody>
-                  <ModalFooter>
-                    <Button className="post" onClick={toggle}>Post</Button>{' '}
-                  </ModalFooter>
+
+                    </form>
                 </Modal>
                </div>
             <p className="pollCommentsCount">{poll.comments.length}</p>
