@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import deepPurple from '@material-ui/core/colors/deepPurple'
+import TextField from '@material-ui/core/TextField'
 import PollAPI from '../../utils/PollAPI'
 import './Explorepage.css'
 import commentsSvg from '../../images/comments.svg'
@@ -8,14 +12,34 @@ import avatar from '../../images/Avatar.svg'
 import edit from '../../images/Edit.svg'
 import moment from 'moment'
 
-const { getNewestPolls, updateOnePoll, getCategories } = PollAPI
-
+const { getNewestPolls, updateOnePoll, getCategories, createComment } = PollAPI
 const ExplorePageComp = _ => {
 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 310,
+      },
+    },
+  }))
+  const classes = useStyles()
+  const theme = createMuiTheme({
+    palette: {
+      primary: deepPurple,
+      secondary: {
+        main: '#f44336',
+      },
+    },
+  })
+ 
+  const [modal, setModal] = useState(false)
+  const toggle = () => setModal(!modal)
   const [data, setData] = useState({ 
     polls: [],
     selectedValue: '',
     searchCategory: '',
+    comment: '',
     votedPolls: []
    })
 
@@ -33,6 +57,17 @@ const ExplorePageComp = _ => {
     setData({ ...data, selectedValue: target.value })
     console.log(target.value)
   }
+
+  data.handleInputChange = e => {
+    setData({...data, [e.target.name]: e.target.value})
+  }
+
+ data.createComment = (e, pollId) => {
+  e.preventDefault()
+
+  createComment({comment: data.comment, user: JSON.parse(sessionStorage.getItem('userInfo')).userId, poll: pollId})
+
+ }
 
   data.updatePoll = e => {
     e.preventDefault() 
@@ -74,8 +109,10 @@ const ExplorePageComp = _ => {
     fetchData()
   },[])
 
+
+
   return(
-    <>
+      <>
       <NavBar updateSearch={data.updateSearch} />
       {data.polls.map(poll => (
         <div key={poll._id} className="pollCard">
@@ -87,7 +124,25 @@ const ExplorePageComp = _ => {
             }</h6>
           </div>
           <div>
-            <img alt="comments" className="pollCommentsSvg" src={commentsSvg}/>
+            <img alt="comments" onClick={toggle} className="pollCommentsSvg" src={commentsSvg}/>
+            <div>
+                <Modal isOpen={modal} toggle={toggle}>
+                  <ModalHeader toggle={toggle}>
+                    <img className="pollAvatar" alt="User Avatar" src={poll.user.userAvatar ? poll.user.userAvatar : avatar } />
+                  </ModalHeader>
+                    <form className={classes.root} noValidate autoComplete="off">
+                  <ModalBody>
+                    <ThemeProvider theme={theme}>
+                      <p>
+                    <TextField id="outlined-basic" label="Comment" name="comment" variant="outlined" onChange={data.handleInputChange} value={data.comment} />
+                      </p>
+                    </ThemeProvider>
+                    <Button className="post" type="submit" onClick={(e) => { data.createComment(e, poll._id); toggle();}}>Post</Button>
+                  </ModalBody>
+
+                    </form>
+                </Modal>
+               </div>
             <p className="pollCommentsCount">{poll.comments.length}</p>
             <img alt="votes" className="pollVotesSvg" src={votesSvg}/>
             <p className="pollVotesCount">{Object.keys(poll.votes).reduce((sum,key)=>sum+parseFloat(poll.votes[key]||0),0)}</p>
