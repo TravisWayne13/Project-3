@@ -25,6 +25,8 @@
   -moz-border-radius: 100%;
   -ms-border-radius: 100%;
   -o-border-radius: 100%;
+  width: 40px;
+  height: 40px;
 }
 
 .pollUsername {
@@ -127,6 +129,14 @@
   font-weight: 300;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+.poll form button:disabled {
+  background-color: #E4E4E4;
+}
+
+input, label {
+  cursor: pointer;
 }
 
 .pollCard button.viewComments {

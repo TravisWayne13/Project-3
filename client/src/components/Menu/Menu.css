@@ -47,6 +47,8 @@ p.email {
   -moz-border-radius: 100%;
   -ms-border-radius: 100%;
   -o-border-radius: 100%;
+  width: 50px;
+  height: 50px;
 }
 
 /* Individual item */
