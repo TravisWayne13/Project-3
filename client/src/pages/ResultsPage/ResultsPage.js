@@ -3,23 +3,32 @@ import PollResults from '../../components/PollResults'
 import Menu from '../../components/Menu'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import axios from 'axios'
+import PollAPI from '../../utils/PollAPI'
+import {useParams} from 'react-router-dom'
+
 const ResultsPage = _ => {
+
+let {urlId} = useParams()
+
+const{getOnePoll} = PollAPI
 
 const [resultsState, setResultsState] = useState({
 optionLabels: [],
-votes: [],
-
+votes: {},
+pollTitle: ''
 })
 
 useEffect(() => {
-        axios.get('/api/polls/id/5e3c5a760817bf448c20c6d0')
+        getOnePoll(`${urlId}`)
         .then(({data}) => {
-        console.log(data)
+        console.log(data.poll)
         setResultsState({
-        optionLabels: data.options,
-        votes: data.votes
+        optionLabels: data.poll.options,
+        votes: data.poll.votes,
+        pollTitle : data.poll.headline
         })
         })
+        .then(() => {console.log(resultsState)})
         .catch(err => {console.log(err)} )
     },[])
 

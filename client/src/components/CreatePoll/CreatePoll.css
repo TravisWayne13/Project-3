@@ -1,9 +1,14 @@
 .buttonStyles{
     background-color:#7B68EE !important;
 }
+.generateLinkBtn{
+
+}
+
 .buttonStylesSelected {
     background-color:rgb(58, 48, 114) !important;
 }
-.addBtn{
-  
+.badge{
+    height: 20px;
+    width: 40px;
 }

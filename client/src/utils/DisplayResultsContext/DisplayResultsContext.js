@@ -2,8 +2,9 @@ import { createContext } from 'react'
 
 const DisplayResultsContext = createContext({
     optionLabels: [],
-    votes: [],
-    
+    votes: {},
+    pollTitle: ''
+
 })
 
 export default DisplayResultsContext
