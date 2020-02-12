@@ -41,6 +41,7 @@ const {updateOnePoll, getOnePoll} = PollAPI
         })
 
     }
+    
   DisplayPollState.viewResults = () => {
       console.log(DisplayPollState.id)
     window.location = `/resultspage/${DisplayPollState.id}`

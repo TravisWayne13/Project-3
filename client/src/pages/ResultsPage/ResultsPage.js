@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import PollResults from '../../components/PollResults'
 import Menu from '../../components/Menu'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
-import axios from 'axios'
 import PollAPI from '../../utils/PollAPI'
 import {useParams} from 'react-router-dom'
 

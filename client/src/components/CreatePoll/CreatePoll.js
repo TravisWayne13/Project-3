@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import CreatePollContext from '../../utils/CreatePollContext'
-import { Button, ButtonGroup, ButtonToolbar, Form, FormGroup, Label, Badge, Input, Container, Jumbotron, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Button, ButtonGroup, ButtonToolbar, Form, FormGroup, Label, Input, Container, Jumbotron, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { IoIosBasketball } from 'react-icons/io';
 import { MdLocalMovies } from 'react-icons/md'
 import { FaPizzaSlice } from 'react-icons/fa'

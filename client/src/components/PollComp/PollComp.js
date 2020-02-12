@@ -10,7 +10,7 @@ const PollComp = () => {
 
     
 
-    const {id,
+    const {
         headline,
         category,
         imageLink,
