@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Button, Form, FormGroup, Label, Input, Container, Jumbotron } from 'reactstrap'
 import UserContext from '../../utils/Usercontext'
-import { GoogleLogin } from 'react-google-login';
 import './SignUp.css'
 const SignUpComp = _ => {
 
@@ -58,14 +57,9 @@ const errorLabel = {
               placeholder="ex. password123" />
             <p style={(!formValid && errors.password) ? errorLabel : {display: 'none'}}>{errors.password}</p>
           </FormGroup>
-          <Button className="btn-lg btn-dark btn-block buttonStyles" onClick={handleFormSubmit}>
+          <Button type="submit" className="btn-lg btn-dark btn-block buttonStyles" onClick={handleFormSubmit}>
               Create Account
           </Button>
-          <div  className="text-center pt-3 colorSet">
-              Or continue with your google login info
-          </div>
-          <br />
-          <GoogleLogin className="googleLink"/>
           <br />
           <br />
           <div className="text-center colorSet">

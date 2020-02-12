@@ -16,17 +16,17 @@ const {
     return (
 
         <Container>
-            <Card>
+            <Card className="pollResultCard">
                 <CardHeader>Poll Results</CardHeader>
                 <CardBody>
                     <CardTitle><h5>{pollTitle}</h5></CardTitle>
-                    <CardText>
+                    <div>
                     {
     
                         optionLabels.map((option, i) => (
-                            <div>
+                            <div key={option}>
                             <Label>{option}</Label>
-                            <Progress data-index={i} animated value={34} />
+                            <Progress color="white" data-index={i} animated value={(votes[option]/Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0))*100} />
                             <br/>
                             </div>
    
@@ -35,9 +35,10 @@ const {
                         }
                        
                    
-                    </CardText>
-                    <Button className="buttonStyles" onClick={() => {window.location=`/pollpage/${id}`}}>Back to Poll</Button>
-
+                    </div>
+                    <Button onClick={() => {window.location=`/explore`}}>
+                        Back to Explore Page
+                    </Button>
                 </CardBody>
                 {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
             </Card>

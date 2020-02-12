@@ -1,3 +1,11 @@
-.buttonStyles{
-    background-color:#7B68EE !important;
+.progress-bar.bg-white {
+  background-color: #6979F8!important;
+}
+
+.pollResultCard {
+  margin-top: 30px;
+}
+
+.pollResultCard button, .pollResultCard button:hover, .pollResultCard button:active {
+  background-color: #6979F8;
 }

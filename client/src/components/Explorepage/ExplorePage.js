@@ -15,7 +15,8 @@ const ExplorePageComp = _ => {
   const [data, setData] = useState({ 
     polls: [],
     selectedValue: '',
-    searchCategory: ''
+    searchCategory: '',
+    votedPolls: []
    })
 
   data.showPoll = e => {
@@ -34,8 +35,15 @@ const ExplorePageComp = _ => {
   }
 
   data.updatePoll = e => {
-    e.preventDefault()
+    e.preventDefault() 
+    let votedPolls = data.votedPolls
+    votedPolls.push(e.target.id)
+    setData({...data, votedPolls})
     let property = `votes.${data.selectedValue}`
+    let localPolls = JSON.parse(localStorage.getItem('polls'))
+    console.log(localPolls, e.target.id)
+    localPolls ? localPolls.push(e.target.id) : localPolls = [e.target.id]
+    localStorage.setItem('polls', JSON.stringify(localPolls))
     updateOnePoll(e.target.id, { $inc: { [property] : 1 }},
     function(err, result){
       if(err){
@@ -72,7 +80,7 @@ const ExplorePageComp = _ => {
       {data.polls.map(poll => (
         <div key={poll._id} className="pollCard">
           <div className="pollCreated">
-            <img className="pollAvatar" alt="User Avatar" src={poll.user.userAvatar ? poll.user.userAvatar : avatar } />
+            <img className="pollAvatar" alt="User Avatar" src={poll.user.avatar ? poll.user.avatar : avatar } />
             <h5 className="pollUsername">{poll.user.username}</h5>
             <h6 className="pollTimeStamp">{
               (moment().diff(moment(poll.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') > 60 ? (moment().diff(moment(poll.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') > 12 ? moment(poll.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('MM/DD/YYYY hh:mm a') : moment().diff(moment(poll.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') + ' Hours ago') : moment().diff(moment(poll.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') + ' Minutes ago')
@@ -95,7 +103,7 @@ const ExplorePageComp = _ => {
                     <label htmlFor={option}>{option}</label>
                   </p>
                 ))}
-                <button id={poll._id} onClick={data.updatePoll}>Vote Now</button>
+                <button disabled={(localStorage.getItem('polls') && JSON.parse(localStorage.getItem('polls')).indexOf(poll._id) >= 0) || data.votedPolls.indexOf(poll._id) >= 0 ? true : false} id={poll._id} onClick={data.updatePoll}>Vote Now</button>
               </form>
             </div>
             {(poll.imageLink !== '' ? <img alt="pollImage" className="pollImage" src={poll.imageLink} /> : null)}
