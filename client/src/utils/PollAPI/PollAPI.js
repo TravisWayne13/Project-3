@@ -5,6 +5,7 @@ const PollAPI = {
   getNewestPolls: () => axios.get('/api/polls'),
   getTopPolls: () => axios.get('/api/top/polls'),
   getCategories: (category) => axios.get(`/api/polls/${category}`),
+  getUserPolls: (id) => axios.get(`/api/polls/user/${id}`),
   getOnePoll: (id) => axios.get(`/api/polls/id/${id}`),
   createPoll: (poll) => axios.post('/api/polls/', poll),
   updateOnePoll: (id, values) => axios.put(`/api/polls/${id}`, values),
