@@ -8,7 +8,7 @@ const { authorize } = PollAPI
 
 const ExplorePage = _ => {
 
-  const [ userState, userSetState ] = useState({
+  const [ userState, userSetState, HandleFormSubmit, HandleInputChange ] = useState({
     token: cookie.load('token'),
     intitalLoad: true
   })

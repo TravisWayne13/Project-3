@@ -131,6 +131,27 @@
   margin-top: 10px;
 }
 
+.btn {
+  border: 0;
+}
+
+.post {
+  background-color: #7B68EE !important;
+}
+.modal-header {
+  color: white !important;
+}
+.modal-content {
+  background-color: #181818 !important;
+}
+
+.MuiFormControl-root {
+  width: 110% !important;
+}
+
+.MuiInputBase-input, #outlined-basic-label, .MuiInputLabel-outlined {
+  color: white !important;
+}
 .poll form button:disabled {
   background-color: #E4E4E4;
 }

@@ -20,7 +20,7 @@ module.exports = app => {
   })
 
   // Post one Comment
-  app.post('/api/comments', passport.authenticate('jwt'), (req, res) => {
+  app.post('/api/comments', (req, res) => {
     Comment.create(req.body)
       .then(() => res.sendStatus(200))
       .catch(err => console.error(err))
