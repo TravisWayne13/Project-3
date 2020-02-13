@@ -1,0 +1,23 @@
+h2 {
+  color: white;
+}
+
+.myPollsH2 {
+  padding-left: 15px;
+  padding-top: 20px;
+}
+
+.myPollsCard {
+  display: grid;
+  justify-content: start;
+  grid-column-gap: 8px;
+  grid-template-columns: 20px 5fr;
+}
+
+.myPollsOptions {
+ grid-column: span 2;
+}
+
+.myPollsButtons {
+  grid-column: span 2;
+}

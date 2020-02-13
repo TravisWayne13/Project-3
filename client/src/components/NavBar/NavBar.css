@@ -46,3 +46,8 @@
     height: 55px !important;
   }
 }
+
+.navBarMenu {
+  padding-top: 30px;
+  padding-left: 15px;
+}
