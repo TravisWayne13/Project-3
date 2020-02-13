@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage'
 import CreatePoll from './pages/CreatePoll'
 import PollPage from './pages/PollPage'
 import ResultsPage from './pages/ResultsPage'
+import MyPollsPage from './pages/MyPollsPage'
 
 
 class App extends Component {
@@ -36,6 +37,9 @@ class App extends Component {
                 </Route>
                 <Route exact path='/resultspage/:urlId'>
                     <ResultsPage />
+                </Route>
+                <Route exact path='/mypolls'>
+                  <MyPollsPage />
                 </Route>
 
             </Router>
