@@ -7,7 +7,8 @@ import votesSvg from '../../images/votes.svg'
 const MyPollResults = () => {
 
   const {
-    polls
+    polls,
+    handleDeletePoll
   } = useContext(DisplayResultsContext)
 
 
@@ -30,7 +31,7 @@ const MyPollResults = () => {
                   poll.options.map((option, i) => (
                     <div key={option}>
                       <Label>{option}</Label>
-                      <Progress color="white" data-index={i} value={Math.round((poll.votes[option] / Object.keys(poll.votes).reduce((sum, key) => sum + parseFloat(poll.votes[key] || 0), 0)) * 100)}>{Math.round((poll.votes[option] / Object.keys(poll.votes).reduce((sum, key) => sum + parseFloat(poll.votes[key] || 0), 0)) * 100)}%</Progress>
+                      <Progress color="white" data-index={i} value={Math.round((poll.votes[option] / Object.keys(poll.votes).reduce((sum, key) => sum + parseFloat(poll.votes[key] || 0), 0)) * 100)}>{isNaN(Math.round((poll.votes[option] / Object.keys(poll.votes).reduce((sum, key) => sum + parseFloat(poll.votes[key] || 0), 0)) * 100)) ? '' : Math.round((poll.votes[option] / Object.keys(poll.votes).reduce((sum, key) => sum + parseFloat(poll.votes[key] || 0), 0)) * 100) + '%' }</Progress>
                       <br />
                     </div>
 
@@ -39,8 +40,8 @@ const MyPollResults = () => {
                 }
               </div>
               <div className="myPollsButtons">
-                <Button onClick={() => { window.location = `/explore` }}>Share Poll</Button>
-                <Button onClick={() => { window.location = `/explore` }}>Delete Poll</Button>
+                <Button onClick={() => { window.location = `/pollPage${poll._id}` }}>Share Poll</Button>
+                <Button className="deleteButton" onClick={() => handleDeletePoll(poll._id)}>Delete Poll</Button>
               </div>
             </CardBody>
           </Card>

@@ -8,4 +8,36 @@
 
 .pollResultCard button, .pollResultCard button:hover, .pollResultCard button:active {
   background-color: #6979F8;
+  border: 0;
+  width: 45%;
+  min-width: 100px;
+  height: 42px;
 }
+
+
+.myPollsH2 {
+  padding-left: 15px;
+  padding-top: 20px;
+}
+
+.myPollsCard {
+  display: grid;
+  justify-content: start;
+  grid-column-gap: 8px;
+  grid-template-columns: 20px 5fr;
+}
+
+.myPollsOptions {
+ grid-column: span 2;
+}
+
+.myPollsButtons {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pollResultCard button.deleteButton, .pollResultCard button.deleteButton:hover, .pollResultCard button.deleteButton:active {
+  background-color: #FF647C;
+}
+

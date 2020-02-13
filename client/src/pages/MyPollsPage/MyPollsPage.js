@@ -5,16 +5,39 @@ import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import PollAPI from '../../utils/PollAPI'
 import { useParams } from 'react-router-dom'
 import './MyPollsPage.css'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 const MyPollsPage = _ => {
 
   let { urlId } = useParams()
 
-  const { getUserPolls } = PollAPI
+  const { getUserPolls, deleteOnePoll } = PollAPI
 
   const [resultsState, setResultsState] = useState({
     polls: []
   })
+
+  resultsState.handleDeletePoll = pollId => {
+    confirmAlert({
+      title: 'About to delete your Poll',
+      message: 'Are you sure you want to do this?',
+      buttons: [
+        {
+          label: 'Delete My Poll',
+          onClick: () => {
+            deleteOnePoll(pollId)
+              .then(() => window.location.reload())
+              .catch(err => console.error(err))
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => {}
+        }
+      ]
+    })
+  }
 
   useEffect(() => {
     getUserPolls(JSON.parse(sessionStorage.getItem('userInfo')).userId)

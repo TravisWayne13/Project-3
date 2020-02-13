@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ExplorePageComp from '../../components/ExplorePage'
+import ExplorePageComp from '../../components/ExplorePageComp'
 import PollAPI from '../../utils/PollAPI'
 import cookie from 'react-cookies'
 
