@@ -28,7 +28,8 @@ const {
                             {console.log((votes[option]))}
                             <div key={option}>
                             <Label>{option}</Label>
-                            <Progress color="white" data-index={i} value={Math.round((votes[option] / Object.keys(votes).reduce((sum, key) => sum + parseFloat(votes[key] || 0), 0)) * 100)}>{isNaN(Math.round((votes[option] / Object.keys(votes).reduce((sum, key) => sum + parseFloat(votes[key] || 0), 0)) * 100)) ? '' : Math.round((votes[option] / Object.keys(votes).reduce((sum, key) => sum + parseFloat(votes[key] || 0), 0)) * 100) + '%'}</Progress>
+                            <Progress color="white" data-index={i} animated value={(votes[option]/Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0))*100} />
+                            <Progress color="white" data-index={i} value={Math.round((votes[option] / Object.keys(votes).reduce((sum, key) => sum + parseFloat(votes[key] || 0), 0)) * 100)}>{isNaN(Math.round((votes[option] / Object.keys(votes).reduce((sum, key) => sum + parseFloat(votes[key] || 0), 0)) * 100)) ? '' : Math.round((votes[option] / Object.keys(poll.votes).reduce((sum, key) => sum + parseFloat(poll.votes[key] || 0), 0)) * 100) + '%'}</Progress>
                             <br/>
                             </div>
    </>
