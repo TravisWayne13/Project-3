@@ -30,9 +30,8 @@ passport.use(new JWTStrategy({
 
 require('./routes')(app)
 
-process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 
-require('mongoose')
-  .connect('mongodb://heroku_2dz0g23n:gj4tig569nh746mhnih33141a9@ds211269.mlab.com:11269/heroku_2dz0g23n', {
+equire('mongoose')
+  .connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/polls', {
     useCreateIndex: true,
     useFindAndModify: true,
     useNewUrlParser: true,
