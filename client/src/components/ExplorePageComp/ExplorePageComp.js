@@ -174,7 +174,7 @@ const ExplorePageComp = _ => {
             <div key={comment._id} className="commentCard">
             {(comment.user._id === JSON.parse(sessionStorage.getItem('userInfo')).userId ? <img className="commentEdit" src={edit} alt="Edit" /> : null)}
               <div className="commentCreated">
-                <img className="commentAvatar" alt="User Avatar" src={comment.user.userAvatar ? comment.user.userAvatar : avatar } />
+                <img className="commentAvatar" alt="User Avatar" src={comment.user.avatar ? comment.user.userAvatar : avatar } />
                 <h5 className="commentUsername">{comment.user.username}</h5>
                 <h6 className="commentTimeStamp">{
                   (moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') > 60 ? (moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') > 12 ? moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('MM/DD/YYYY hh:mm a') : moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') + ' Hours ago') : moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') + ' Minutes ago')

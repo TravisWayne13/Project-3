@@ -5,7 +5,7 @@ module.exports = app => {
   
   // Get all Comments (Not sure if we need this if comments are gonna be populated onto the Polls, leaving it in for testing -Michael)
   app.get('/api/comments', (req, res) => {
-    Comment.find()
+    Comment.find().sort({createdAt: -1})
       .populate('poll')
       .then(comments => res.json(comments))
       .catch(err => console.error(err))
@@ -13,7 +13,7 @@ module.exports = app => {
 
   // Get Comments by Poll
   app.get('/api/comments/:id', (req, res) => {
-    Comment.find({'poll': req.params.id})
+    Comment.find({'poll': req.params.id}).sort({createdAt: -1})
       .populate('poll')
       .then(comment => res.json(comment))
       .catch(err => console.error(err))
