@@ -50,7 +50,7 @@ const SignIn = _ => {
       authorize(userState.token)
         .then(res => {
           console.log(res)
-          window.location.href = '/explore'
+          //window.location.href = '/explore'
         })
         .catch(err => {
           console.error(err)
