@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-equire('mongoose')
+require('mongoose')
   .connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/polls', {
     useCreateIndex: true,
     useFindAndModify: true,
