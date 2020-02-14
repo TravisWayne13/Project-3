@@ -40,7 +40,7 @@ const MyPollResults = () => {
                 }
               </div>
               <div className="myPollsButtons">
-                <Button onClick={() => { window.location = `/pollPage${poll._id}` }}>Share Poll</Button>
+                <Button onClick={() => { window.location = `/pollPage/${poll._id}` }}>Share Poll</Button>
                 <Button className="deleteButton" onClick={() => handleDeletePoll(poll._id)}>Delete Poll</Button>
               </div>
             </CardBody>
