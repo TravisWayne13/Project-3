@@ -1,67 +1,57 @@
-import React, { useContext} from 'react'
+import React, { useContext } from 'react'
 import DisplayPollContext from '../../utils/DisplayPollContext'
 
-import { Container, Jumbotron, FormGroup, Button, Card, CardImg , CustomInput} from 'reactstrap'
+import { Container, Jumbotron, FormGroup, Button, Card, CardImg, CustomInput } from 'reactstrap'
 import './PollComp.css'
 
-
-
 const PollComp = () => {
+  const {
+ id,
+    headline,
+    category,
+    imageLink,
+    options,
+    onSelectBox,
+    updatePoll,
+    viewResults
+  } = useContext(DisplayPollContext)
 
-    
+  return (
+    <Container>
+      <Jumbotron className='jumbotron' fluid>
+        <Container fluid>
+          <h2 className='colorSet'>{category}</h2>
+        </Container>
+      </Jumbotron>
 
-    const {id,
-        headline,
-        category,
-        imageLink,
-        options,
-        onSelectBox,
-        updatePoll,
-        viewResults
-     } = useContext(DisplayPollContext)
+      <FormGroup className='pollForm' tag='fieldset'>
+        <legend className='pollInput'>{headline}</legend>
+        <br />
+        {
+          options.map((option, i) => (
+            <FormGroup>
+              <div>
+                <CustomInput type='radio' onClick={onSelectBox} id={i} name='radio1' value={option} label={option} className='pollInput' />
+              </div>
+            </FormGroup>
 
+          ))
+        }
 
-  
+        <Card>
+          <CardImg top width='100%' src={imageLink} alt={category} />
+        </Card>
 
-        return (
-            <Container>
-                <Jumbotron className="jumbotron" fluid>
-                    <Container fluid>
-                        <h2 className="colorSet">{category}</h2>
-                    </Container>
-                </Jumbotron>
+        <br />
 
-                <FormGroup className="pollForm" tag="fieldset">
-                    <legend className="pollInput">{headline}</legend>
-                    <br/>
-                    { 
-                        options.map((option, i) => (
-                             <FormGroup>
-                             <div>
-                              <CustomInput type="radio" onClick={onSelectBox} id={i} name="radio1" value={option} label={option} className="pollInput" />
-                            </div>
-                           </FormGroup>
+        <Button onClick={updatePoll} className='btn-lg btn-dark btn-block buttonStyles'>Submit</Button>
+        <br />
+        <Button onClick={viewResults} className='btn-lg btn-dark btn-block buttonStyles'>View Results</Button>
 
-                            ))
-                    }
+      </FormGroup>
 
-                    <Card>
-                        <CardImg top width="100%" src={imageLink} alt={category} />
-                    </Card>
-                 
-                    
-                    <br/>
+    </Container>
 
-                    <Button onClick={updatePoll} className="btn-lg btn-dark btn-block buttonStyles">Submit</Button>
-                    <br/>
-                    <Button onClick={viewResults} className="btn-lg btn-dark btn-block buttonStyles">View Results</Button>
-
-                </FormGroup>
-
-            </Container>
-
-
-        )
-    
+  )
 }
 export default PollComp

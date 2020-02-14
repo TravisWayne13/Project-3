@@ -1,6 +1,16 @@
 require('dotenv').config()
 
+const nodemailer = require('nodemailer')
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'pollioappio@gmail.com',
+    pass: 'Zotzotzotzot'
+  }
+})
 const express = require('express')
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
 const { join } = require('path')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
@@ -13,7 +23,7 @@ app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// userAuth 
+// userAuth
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -30,13 +40,13 @@ passport.use(new JWTStrategy({
 
 require('./routes')(app)
 
-process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 
-require('mongoose')
-  .connect('mongodb://localhost:27017/polls', {
-    useCreateIndex: true,
-    useFindAndModify: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => app.listen(process.env.PORT || 2998))
-  .catch(e => console.error(e))
+process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI
+  : require('mongoose')
+    .connect('mongodb://localhost:27017/polls', {
+      useCreateIndex: true,
+      useFindAndModify: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    .then(() => app.listen(process.env.PORT || 2998))
+    .catch(e => console.error(e))
