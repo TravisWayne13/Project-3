@@ -25,7 +25,7 @@ module.exports = app => {
 
   // Get Polls by Category
   app.get('/api/polls/:category', (req, res) => {
-    Poll.find({'category': req.params.category})
+    Poll.find({'category': req.params.category}).sort({createdAt: -1})
       .populate('user')
       .populate('comments')
       .populate({path: 'comments', populate: [{path: 'user'}]})
@@ -33,9 +33,15 @@ module.exports = app => {
       .catch(err => console.error(err))
   })
 
+  // Get Polls by User ID
+  app.get('/api/polls/user/:id', (req, res) => {
+    Poll.find({'user': req.params.id}).sort({createdAt: -1})
+      .then(polls => res.json(polls))
+      .catch(err => console.log(err))
+  })
+
   // Get one Poll by id
   app.get('/api/polls/id/:id', (req, res) => {
-    console.log(req.params.id)
     Poll.findById(req.params.id)
       // .populate('comments')
       .then(poll => {

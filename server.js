@@ -40,6 +40,7 @@ passport.use(new JWTStrategy({
 
 require('./routes')(app)
 
+<<<<<<< HEAD
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI
   : require('mongoose')
     .connect('mongodb://localhost:27017/polls', {
@@ -50,3 +51,23 @@ process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI
     })
     .then(() => app.listen(process.env.PORT || 2998))
     .catch(e => console.error(e))
+=======
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(join(__dirname, 'client/build')))
+  // Handle React routing, return all requests to React app
+  app.get('*', (request, response) => {
+    response.sendFile(join(__dirname, 'client/build', 'index.html'))
+  })
+}
+
+require('mongoose')
+  .connect(process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 'mongodb://localhost:27017/polls', {
+    useCreateIndex: true,
+    useFindAndModify: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => app.listen(process.env.PORT || 2998))
+  .catch(e => console.error(e))
+>>>>>>> 650529669ba3725db1c80e0554e5681bbed3bf49

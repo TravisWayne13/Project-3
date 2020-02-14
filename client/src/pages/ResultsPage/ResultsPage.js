@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import PollResults from '../../components/PollResults'
 import Menu from '../../components/Menu'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
-import axios from 'axios'
 import PollAPI from '../../utils/PollAPI'
 import {useParams} from 'react-router-dom'
 
@@ -15,7 +14,7 @@ const{getOnePoll} = PollAPI
 const [resultsState, setResultsState] = useState({
 optionLabels: [],
 votes: {},
-pollTitle: ''
+pollTitle: '',
 })
 
 useEffect(() => {
@@ -23,6 +22,7 @@ useEffect(() => {
         .then(({data}) => {
         console.log(data.poll)
         setResultsState({
+        id: urlId,
         optionLabels: data.poll.options,
         votes: data.poll.votes,
         pollTitle : data.poll.headline

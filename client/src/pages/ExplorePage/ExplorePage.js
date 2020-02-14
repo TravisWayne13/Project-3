@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ExplorePageComp from '../../components/ExplorePage'
+import ExplorePageComp from '../../components/ExplorePageComp'
 import PollAPI from '../../utils/PollAPI'
 import cookie from 'react-cookies'
 
@@ -8,7 +8,7 @@ const { authorize } = PollAPI
 
 const ExplorePage = _ => {
 
-  const [ userState, userSetState ] = useState({
+  const [ userState, userSetState, HandleFormSubmit, HandleInputChange ] = useState({
     token: cookie.load('token'),
     intitalLoad: true
   })

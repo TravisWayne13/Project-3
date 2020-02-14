@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Container, Card, Button, CardTitle, CardText, CardHeader, CardBody, CardFooter , Progress, Label} from 'reactstrap'
+import { Container, Card, Button, CardTitle, CardHeader, CardBody, Progress, Label} from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import './PollResults.css'
 
@@ -8,7 +8,7 @@ const PollResults = () => {
 const {
     optionLabels,
     votes,
-    pollTitle
+    pollTitle,
 } = useContext(DisplayResultsContext)
 
 
@@ -24,23 +24,24 @@ const {
                     {
     
                         optionLabels.map((option, i) => (
+                            <>
+                            {console.log((votes[option]))}
                             <div key={option}>
                             <Label>{option}</Label>
                             <Progress color="white" data-index={i} animated value={(votes[option]/Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0))*100} />
                             <br/>
                             </div>
-   
+   </>
                         )) 
 
                         }
                        
                    
                     </div>
-                    <Button onClick={() => {window.location=`/explore`}}>
-                        Back to Explore Page
+                    <Button className="backtoExplore" onClick={() => {window.location=`/explore`}}>
+                        Explore Page
                     </Button>
                 </CardBody>
-                {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
             </Card>
 
         </Container>

@@ -8,6 +8,12 @@
   border-top: solid 1px #353535;
   padding-top: 30px;
 }
+.links{
+  display: inline;
+  text-align: center;
+  grid-column-start: 2;
+  align-items: space-between;
+}
 
 .pollCreated {
   grid-column: span 2;
@@ -129,8 +135,26 @@
   font-weight: 300;
   border-radius: 5px;
   margin-top: 10px;
+  border: 0;
 }
 
+.post {
+  background-color: #7B68EE !important;
+}
+.modal-header {
+  color: white !important;
+}
+.modal-content {
+  background-color: #181818 !important;
+}
+
+.MuiFormControl-root {
+  width: 110% !important;
+}
+
+.MuiInputBase-input, #outlined-basic-label, .MuiInputLabel-outlined {
+  color: white !important;
+}
 .poll form button:disabled {
   background-color: #E4E4E4;
 }
@@ -154,9 +178,10 @@ input, label {
 
 .commentCard {
   border-bottom: solid 1px #353535;
-  padding-bottom: 10px;
+  padding-bottom: 6px;
   display: flex;
   flex-wrap: wrap;
+  padding-top: 10px;
 }
 
 .commentCreated {

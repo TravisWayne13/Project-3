@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import CreatePollContext from '../../utils/CreatePollContext'
-import { Button, ButtonGroup, ButtonToolbar, Form, FormGroup, Label, Badge, Input, Container, Jumbotron, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Button, ButtonGroup, ButtonToolbar, Form, FormGroup, Label, Input, Container, Jumbotron, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { IoIosBasketball } from 'react-icons/io';
 import { MdLocalMovies } from 'react-icons/md'
 import { FaPizzaSlice } from 'react-icons/fa'
@@ -46,7 +46,7 @@ const CreatePollComp = () => {
                         <Label className="colorSet">Category</Label>
 
                         <ButtonToolbar>
-                            <ButtonGroup>"
+                            <ButtonGroup>
                                 <Button onClick={() => handleChooseCategory('Sports')} className={category === 'Sports' ? 'buttonStylesSelected' : 'buttonStyles'}><IoIosBasketball /></Button>
                                 <Button onClick={() => handleChooseCategory('Movies')} className={category === 'Movies' ? 'buttonStylesSelected' : 'buttonStyles'}><MdLocalMovies /></Button>
                                 <Button onClick={() => handleChooseCategory('Food')} className={category === 'Food' ? 'buttonStylesSelected' : 'buttonStyles'}><FaPizzaSlice /></Button>
@@ -74,10 +74,13 @@ const CreatePollComp = () => {
                     <br />
                     <br />
 
-                    <Button onClick={handleCreatePoll} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
+                    <Button onClick={event => { 
+                        handleCreatePoll(event)
+                        toggle()
+                    }} className="btn-lg btn-dark btn-block buttonStyles">Create Poll</Button>
                 </Form>
                 <br />
-                <Button className="buttonStyles generateLinkBtn" onClick={toggle}>Generate Link</Button>
+                
                 <Modal isOpen={modal} toggle={toggle}>
                     <ModalHeader toggle={toggle}>Poll Link</ModalHeader>
                     <ModalBody>
