@@ -38,11 +38,10 @@ const {
                        
                    
                     </div>
-                    <Button onClick={() => {window.location=`/explore`}}>
-                        Back to Explore Page
+                    <Button className="backtoExplore" onClick={() => {window.location=`/explore`}}>
+                        Explore Page
                     </Button>
                 </CardBody>
-                {/* <CardFooter>{Object.values(votes)}</CardFooter> */}
             </Card>
 
         </Container>

@@ -4,7 +4,8 @@ const DisplayResultsContext = createContext({
     optionLabels: [],
     votes: {},
     pollTitle: '',
-
+    
+   
 })
 
 export default DisplayResultsContext
