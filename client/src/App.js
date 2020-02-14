@@ -11,9 +11,6 @@ import MyPollsPage from './pages/MyPollsPage'
 
 
 class App extends Component {
-
-
-
     render() {
         return (
             <Router>
@@ -43,10 +40,7 @@ class App extends Component {
                 </Route>
 
             </Router>
-
-
-
-        )
+            )        
     }
 }
 

@@ -15,7 +15,11 @@ const MyPollsPage = _ => {
   const { getUserPolls, deleteOnePoll } = PollAPI
 
   const [resultsState, setResultsState] = useState({
-    polls: []
+    polls: [],
+    linkValue: '',
+    copied: false,
+    
+    
   })
 
   resultsState.handleDeletePoll = pollId => {
@@ -37,6 +41,10 @@ const MyPollsPage = _ => {
         }
       ]
     })
+  }
+
+  resultsState.copyLink = () => {
+    
   }
 
   useEffect(() => {

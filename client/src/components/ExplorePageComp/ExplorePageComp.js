@@ -163,7 +163,12 @@ const ExplorePageComp = _ => {
             </div>
             {(poll.imageLink !== '' ? <img alt="pollImage" className="pollImage" src={poll.imageLink} /> : null)}
           </div>
+
+          <div className="links">
           <button className="viewComments" onClick={data.showComments}>View Comments</button>
+          <button className="viewComments" onClick={() => {window.location = `/resultspage/${poll.id}`}}>View Results</button>
+          </div>
+
           <div className="pollComments">
           {poll.comments.map(comment => (
             <div key={comment._id} className="commentCard">

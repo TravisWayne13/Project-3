@@ -9,3 +9,7 @@
 .pollResultCard button, .pollResultCard button:hover, .pollResultCard button:active {
   background-color: #6979F8;
 }
+
+.backtoExplore{
+  height: 30px;
+}

@@ -29,7 +29,7 @@ const {updateOnePoll, getOnePoll} = PollAPI
       console.log(target.value)
     }
 
-    DisplayPollState.updatePoll = ({ target }, req,res) => {
+    DisplayPollState.updatePoll = () => {
         console.log(DisplayPollState)
         let property = `votes.${DisplayPollState.selectedValue}`
         updateOnePoll(DisplayPollState.id, { $inc: { [property] : 1 }},
@@ -41,11 +41,11 @@ const {updateOnePoll, getOnePoll} = PollAPI
         })
 
     }
+    
   DisplayPollState.viewResults = () => {
       console.log(DisplayPollState.id)
     window.location = `/resultspage/${DisplayPollState.id}`
-  }
-      
+  }    
 
 useEffect(() => {
 console.log(urlId)
