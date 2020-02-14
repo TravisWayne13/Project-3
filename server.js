@@ -32,7 +32,7 @@ require('./routes')(app)
 
 process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI : 
 require('mongoose')
-  .connect('mongodb://heroku_5gv7ft2b:654p80hu75835aa28i9dpb1ef6@ds133622.mlab.com:33622/heroku_5gv7ft2b', {
+  .connect('mongodb://heroku_2dz0g23n:gj4tig569nh746mhnih33141a9@ds211269.mlab.com:11269/heroku_2dz0g23n', {
     useCreateIndex: true,
     useFindAndModify: true,
     useNewUrlParser: true,
