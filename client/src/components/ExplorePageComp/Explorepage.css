@@ -8,6 +8,12 @@
   border-top: solid 1px #353535;
   padding-top: 30px;
 }
+.links{
+  display: inline;
+  text-align: center;
+  grid-column-start: 2;
+  align-items: space-between;
+}
 
 .pollCreated {
   grid-column: span 2;

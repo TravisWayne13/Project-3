@@ -10,7 +10,7 @@ const PollComp = () => {
 
     
 
-    const {id,
+    const {
         headline,
         category,
         imageLink,
@@ -52,9 +52,10 @@ const PollComp = () => {
                     
                     <br/>
 
-                    <Button onClick={updatePoll} className="btn-lg btn-dark btn-block buttonStyles">Submit</Button>
+                    <Button onClick={() => { updatePoll()
+                    viewResults()
+                    }} className="btn-lg btn-dark btn-block buttonStyles">Submit</Button>
                     <br/>
-                    <Button onClick={viewResults} className="btn-lg btn-dark btn-block buttonStyles">View Results</Button>
 
                 </FormGroup>
 
