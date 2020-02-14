@@ -36,7 +36,6 @@ useEffect(() => {
 return (
         
         <DisplayResultsContext.Provider value={resultsState}>
-        <Menu />
         <PollResults/>
         </DisplayResultsContext.Provider>
         
