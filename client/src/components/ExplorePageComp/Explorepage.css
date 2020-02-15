@@ -138,8 +138,13 @@
   border: 0;
 }
 
-.post {
+button.btn.post {
   background-color: #7B68EE !important;
+  left: 50%;
+  position: relative;
+  margin-left: -25%;
+  width: 50%;
+  height: 42px;
 }
 .modal-header {
   color: white !important;
@@ -149,7 +154,9 @@
 }
 
 .MuiFormControl-root {
-  width: 110% !important;
+  width: 100% !important;
+  border-radius: 5px;
+  /* border: solid 1px white !important; */
 }
 
 .MuiInputBase-input, #outlined-basic-label, .MuiInputLabel-outlined {
@@ -227,4 +234,8 @@ input, label {
 .commentEdit {
   margin-top: -6px;
   margin-right: 12px;
+}
+
+.modal-body {
+  width: 97% !important;
 }

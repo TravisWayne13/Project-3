@@ -154,9 +154,6 @@ const ExplorePageComp = _ => {
             <img alt="comments" onClick={() => toggle(poll._id)} className="pollCommentsSvg" src={commentsSvg}/>
             <div>
                 <Modal isOpen={modal} toggle={toggle}>
-                  <ModalHeader toggle={toggle}>
-                    <img className="pollAvatar" alt="User Avatar" src={poll.user.avatar ? poll.user.avatar : avatar } />
-                  </ModalHeader>
                     <form className={classes.root} noValidate autoComplete="off">
                   <ModalBody>
                     <ThemeProvider theme={theme}>
