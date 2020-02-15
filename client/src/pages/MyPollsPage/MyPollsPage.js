@@ -18,8 +18,8 @@ const MyPollsPage = _ => {
     polls: [],
     linkValue: '',
     copied: false,
-    
-    
+
+
   })
 
   resultsState.handleDeletePoll = pollId => {
@@ -37,14 +37,14 @@ const MyPollsPage = _ => {
         },
         {
           label: 'No',
-          onClick: () => {}
+          onClick: () => { }
         }
       ]
     })
   }
 
   resultsState.copyLink = () => {
-    
+
   }
 
   useEffect(() => {

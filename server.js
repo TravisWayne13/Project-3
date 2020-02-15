@@ -10,7 +10,6 @@ var transporter = nodemailer.createTransport({
 })
 const express = require('express')
 const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: true }))
 const { join } = require('path')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
@@ -22,6 +21,7 @@ const { User } = require('./models')
 app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // userAuth
 app.use(passport.initialize())
