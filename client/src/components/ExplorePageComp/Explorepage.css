@@ -60,7 +60,7 @@
   font-weight: 300;
 }
 
-.pollCard button.viewPoll, .pollCard button.viewComments {
+.pollCard button.viewPoll, .pollCard button.viewComments, .pollCard button.viewResults {
  color: #6979F8;
  cursor: pointer;
  background-color: transparent;
@@ -71,7 +71,7 @@
  padding: 0;
 }
 
-.pollCard button.viewPoll:hover, .pollCard button.viewComments:hover {
+.pollCard button.viewPoll:hover, .pollCard button.viewComments:hover, .pollCard button.viewResults:hover {
   color: rgb(111, 127, 245);
  }
 
@@ -168,6 +168,13 @@ input, label {
   font-size: 12px;
   grid-column-start: 2;
   width: 88px;
+}
+
+.pollCard button.viewResults {
+  margin-top: 12px;
+  font-size: 12px;
+  grid-column-start: 2;
+  width: 69px;
 }
 
 .pollComments {
