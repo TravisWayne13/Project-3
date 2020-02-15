@@ -7,7 +7,7 @@ module.exports = app => {
   app.get('/api/polls', (req, res) => {
     Poll.find({}).sort({createdAt: -1})
       .populate('user')
-      .populate('comments')
+      .populate({path: 'comments', options: {sort: {'createdAt': -1}}})
       .populate({path: 'comments', populate: [{path: 'user'}]})
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
@@ -17,7 +17,7 @@ module.exports = app => {
   app.get('/api/top/polls', (req, res) => {
     Poll.find({}).sort({'Object.keys(votes).reduce((sum,key)=>sum+parseFloat(votes[key]||0),0': -1})
       .populate('user')
-      .populate('comments')
+      .populate({path: 'comments', options: {sort: {'createdAt': -1}}})
       .populate({path: 'comments', populate: [{path: 'user'}]})
       .then(polls => res.json(polls))
       .catch(err => console.error(err))
@@ -27,7 +27,7 @@ module.exports = app => {
   app.get('/api/polls/:category', (req, res) => {
     Poll.find({'category': req.params.category}).sort({createdAt: -1})
       .populate('user')
-      .populate('comments')
+      .populate({path: 'comments', options: {sort: {'createdAt': -1}}})
       .populate({path: 'comments', populate: [{path: 'user'}]})
       .then(polls => res.json(polls))
       .catch(err => console.error(err))

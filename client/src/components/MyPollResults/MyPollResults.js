@@ -57,7 +57,7 @@ const MyPollResults = () => {
                   }
                 </div>
                 <div className="myPollsButtons">
-                  <Button onClick={() => toggle(window.location.origin +  `/resultspage/${poll._id}`)}>Share Poll</Button>
+                  <Button onClick={() => toggle(window.location.origin +  `/pollpage/${poll._id}`)}>Share Poll</Button>
                   <Button className="deleteButton" onClick={() => handleDeletePoll(poll._id)}>Delete Poll</Button>
                 </div>
               </CardBody>

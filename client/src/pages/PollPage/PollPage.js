@@ -77,7 +77,6 @@ votes: data.poll.votes,
     return (
 
         <DisplayPollContext.Provider value={DisplayPollState}>
-            <Menu />
             <PollComp />
         </DisplayPollContext.Provider>
     )

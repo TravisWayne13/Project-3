@@ -34,23 +34,32 @@ const ExplorePageComp = _ => {
   })
  
   const [modal, setModal] = useState(false)
-  const toggle = () => setModal(!modal)
   const [data, setData] = useState({ 
     polls: [],
     selectedValue: '',
     searchCategory: '',
     comment: '',
-    votedPolls: []
-   })
+    votedPolls: [],
+    modalId: ''
+  })
+  
+  const [value, setValue] = useState("")
+
+  const toggle = modalId => {
+    setValue(modalId)
+    setModal(!modal)
+  }
 
   data.showPoll = e => {
     e.target.nextSibling.style.display = e.target.nextSibling.style.display === 'block' ? 'none' : 'block'
-    e.target.text = e.target.text === 'View Poll' ? 'Hide Poll' : 'View Poll'
+    console.log(e.target)
+    e.target.textContent = e.target.textContent === 'View Poll' ? 'Hide Poll' : 'View Poll'
   }
 
   data.showComments = e => {
     e.target.nextSibling.style.display = e.target.nextSibling.style.display === 'block' ? 'none' : 'block'
-    e.target.text = e.target.text === 'View Comments' ? 'Hide Comments' : 'View Comments'
+    console.log(e.target)
+    e.target.textContent = e.target.textContent === 'View Comments' ? 'Hide Comments' : 'View Comments'
   }
 
   data.onSelectBox = ({ target }) => {
@@ -64,9 +73,23 @@ const ExplorePageComp = _ => {
 
  data.createComment = (e, pollId) => {
   e.preventDefault()
-
+  console.log('comment init created')
   createComment({comment: data.comment, user: JSON.parse(sessionStorage.getItem('userInfo')).userId, poll: pollId})
-
+  let newComment = document.createElement('div')
+  newComment.classList = 'commentCard'
+  newComment.innerHTML = `
+  <div class="commentCreated">
+                <img class="commentAvatar" alt="User Avatar" src=${JSON.parse(sessionStorage.getItem('userInfo')).userAvatar ? JSON.parse(sessionStorage.getItem('userInfo')).userAvatar : avatar } />
+                <h5 class="commentUsername">${JSON.parse(sessionStorage.getItem('userInfo')).username}</h5>
+                <h6 class="commentTimeStamp">0 Minutes ago</h6>
+                </div>
+              <h4 class="commentCardComment">${data.comment}</h4>
+            </div>
+            `
+  document.querySelector('#poll-'+pollId + ' .pollComments').prepend(newComment)
+  let commentCount = (document.querySelector('#poll-'+pollId + ' .pollCommentsCount').textContent)
+  commentCount ++
+  document.querySelector('#poll-'+pollId + ' .pollCommentsCount').textContent = commentCount
  }
 
   data.updatePoll = e => {
@@ -86,6 +109,10 @@ const ExplorePageComp = _ => {
       }
     console.log(result)
     })
+
+    let voutCount = (document.querySelector('#poll-'+e.target.id + ' .pollVotesCount').textContent)
+    voutCount ++
+    document.querySelector('#poll-'+e.target.id + ' .pollVotesCount').textContent = voutCount
   }
 
   data.updateSearch = search => {
@@ -115,7 +142,7 @@ const ExplorePageComp = _ => {
       <>
       <NavBar updateSearch={data.updateSearch} />
       {data.polls.map(poll => (
-        <div key={poll._id} className="pollCard">
+        <div key={poll._id} id={'poll-'+poll._id} className="pollCard">
           <div className="pollCreated">
             <img className="pollAvatar" alt="User Avatar" src={poll.user.avatar ? poll.user.avatar : avatar } />
             <h5 className="pollUsername">{poll.user.username}</h5>
@@ -124,12 +151,9 @@ const ExplorePageComp = _ => {
             }</h6>
           </div>
           <div>
-            <img alt="comments" onClick={toggle} className="pollCommentsSvg" src={commentsSvg}/>
+            <img alt="comments" onClick={() => toggle(poll._id)} className="pollCommentsSvg" src={commentsSvg}/>
             <div>
                 <Modal isOpen={modal} toggle={toggle}>
-                  <ModalHeader toggle={toggle}>
-                    <img className="pollAvatar" alt="User Avatar" src={poll.user.userAvatar ? poll.user.userAvatar : avatar } />
-                  </ModalHeader>
                     <form className={classes.root} noValidate autoComplete="off">
                   <ModalBody>
                     <ThemeProvider theme={theme}>
@@ -137,7 +161,7 @@ const ExplorePageComp = _ => {
                     <TextField id="outlined-basic" label="Comment" name="comment" variant="outlined" onChange={data.handleInputChange} value={data.comment} />
                       </p>
                     </ThemeProvider>
-                    <Button className="post" type="submit" onClick={(e) => { data.createComment(e, poll._id); toggle();}}>Post</Button>
+                    <Button className="post" id={value} type="submit" onClick={(e) => { data.createComment(e, value); toggle();}}>Post</Button>
                   </ModalBody>
 
                     </form>
@@ -163,15 +187,14 @@ const ExplorePageComp = _ => {
             </div>
             {(poll.imageLink !== '' ? <img alt="pollImage" className="pollImage" src={poll.imageLink} /> : null)}
           </div>
-
+          <button className="viewResults" onClick={() => {window.location = `/resultspage/${poll.id}`}}>View Results</button>
           {/* <div className="links"> */}
           <button className="viewComments" onClick={data.showComments}>View Comments</button>
           <div className="pollComments">
-          {poll.comments.map(comment => (
+          {poll.comments.slice(0).reverse().map(comment => (
             <div key={comment._id} className="commentCard">
-            {(comment.user._id === JSON.parse(sessionStorage.getItem('userInfo')).userId ? <img className="commentEdit" src={edit} alt="Edit" /> : null)}
               <div className="commentCreated">
-                <img className="commentAvatar" alt="User Avatar" src={comment.user.avatar ? comment.user.userAvatar : avatar } />
+                <img className="commentAvatar" alt="User Avatar" src={comment.user.avatar ? comment.user.avatar : avatar } />
                 <h5 className="commentUsername">{comment.user.username}</h5>
                 <h6 className="commentTimeStamp">{
                   (moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') > 60 ? (moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') > 12 ? moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ').format('MM/DD/YYYY hh:mm a') : moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'hours') + ' Hours ago') : moment().diff(moment(comment.createdAt, 'YYYY-MM-DDTHH:mm:ss.SSSZ'), 'minutes') + ' Minutes ago')
@@ -182,7 +205,6 @@ const ExplorePageComp = _ => {
 
           ))}
           </div>
-          <button className="viewComments" onClick={() => {window.location = `/resultspage/${poll.id}`}}>View Results</button>
           {/* </div> */}
         </div>
       ))}
