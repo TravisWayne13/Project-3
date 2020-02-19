@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
+import { Button, Modal, ModalBody } from 'reactstrap'
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import deepPurple from '@material-ui/core/colors/deepPurple'
 import TextField from '@material-ui/core/TextField'
@@ -9,7 +9,7 @@ import './Explorepage.css'
 import commentsSvg from '../../images/comments.svg'
 import votesSvg from '../../images/votes.svg'
 import avatar from '../../images/Avatar.svg'
-import edit from '../../images/Edit.svg'
+// import edit from '../../images/Edit.svg'
 import moment from 'moment'
 
 const { getNewestPolls, updateOnePoll, getCategories, createComment } = PollAPI
