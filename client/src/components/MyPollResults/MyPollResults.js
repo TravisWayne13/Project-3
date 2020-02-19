@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { Container, Card, Button, CardTitle, CardText, CardHeader, CardBody, CardFooter, Progress, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Container, Card, Button, CardTitle, CardBody, Progress, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import './PollResults.css'
 import votesSvg from '../../images/votes.svg'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import {copyimg} from '../../images/copytoclipboard.png'
+// import { copyimg } from '../../images/copytoclipboard.png'
 
 const MyPollResults = () => {
 
@@ -57,7 +57,7 @@ const MyPollResults = () => {
                   }
                 </div>
                 <div className="myPollsButtons">
-                  <Button onClick={() => toggle(window.location.origin +  `/pollpage/${poll._id}`)}>Share Poll</Button>
+                  <Button onClick={() => toggle(window.location.origin + `/pollpage/${poll._id}`)}>Share Poll</Button>
                   <Button className="deleteButton" onClick={() => handleDeletePoll(poll._id)}>Delete Poll</Button>
                 </div>
               </CardBody>

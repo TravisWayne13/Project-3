@@ -166,7 +166,7 @@ button.btn.post {
   background-color: #E4E4E4;
 }
 
-input, label {
+input[type=radio], input[type=radio] ~ label {
   cursor: pointer;
 }
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import SignUpComp from '../../components/SignUp'
 import UserContext from '../../utils/Usercontext'
 import PollAPI from '../../utils/PollAPI'
-import cookie from 'react-cookies'
 
 const { registerUser, usernameAvailable, authorize } = PollAPI
 
@@ -68,10 +67,7 @@ const SignUp = _ => {
           // If username isn't taken create user
           registerUser({username: userState.username, email: userState.email, password: userState.password})
             .then(({data}) => {
-              const expires = new Date()
-   expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 7)
-              cookie.save('token', data.token, { path: '/', expires })
-              userSetState({...userState, token: cookie.load('token')})
+              userSetState({...userState, token: data.token})
               // Set User info in session storage
               sessionStorage.setItem('userInfo', JSON.stringify(data))
             })
@@ -90,8 +86,6 @@ const SignUp = _ => {
   }
 
   useEffect(() => {
-    // Check token cookie
-    userSetState({...userState, token: cookie.load('token')})
     // Check if user is Authorized if token exists
     if (userState.token !== '') {
       authorize(userState.token)

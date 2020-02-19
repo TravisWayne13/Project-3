@@ -3,14 +3,12 @@ import MyPollResults from '../../components/MyPollResults'
 import Menu from '../../components/Menu'
 import DisplayResultsContext from '../../utils/DisplayResultsContext'
 import PollAPI from '../../utils/PollAPI'
-import { useParams } from 'react-router-dom'
 import './MyPollsPage.css'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 const MyPollsPage = _ => {
 
-  let { urlId } = useParams()
 
   const { getUserPolls, deleteOnePoll } = PollAPI
 
