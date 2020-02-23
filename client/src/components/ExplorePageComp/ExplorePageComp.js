@@ -1,37 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../NavBar'
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles'
-import deepPurple from '@material-ui/core/colors/deepPurple'
 import PollAPI from '../../utils/PollAPI'
 import './Explorepage.css'
 import avatar from '../../images/Avatar.svg'
-//import edit from '../../images/Edit.svg'
 import PollCard from '../PollCard'
 import PollContext from '../../utils/PollContext'
 
 const { getNewestPolls, updateOnePoll, getCategories, createComment } = PollAPI
 
 const ExplorePageComp = _ => {
-
-  const useStyles = makeStyles(theme => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: 310,
-      },
-    },
-  }))
-  const classes = useStyles()
-  const theme = createMuiTheme({
-    palette: {
-      primary: deepPurple,
-      secondary: {
-        main: '#f44336',
-      },
-    },
-  })
- 
-  
   
   const [pollState, setPollState] = useState({ 
     polls: [],
@@ -39,14 +16,24 @@ const ExplorePageComp = _ => {
     searchCategory: '',
     comment: '',
     votedPolls: [],
-    modalId: ''
+    modalId: '',
+    modal: false,
+    pollId: '',
+    comments: [],
+    poll: ''
   })
-  
-  const [value, setValue] = useState("")
 
-  const toggle = modalId => {
-    setValue(modalId)
-    setModal(!modal)
+  pollState.setPoll = poll => {
+    setPollState({...pollState, poll})
+  }
+
+  pollState.setComments = comments => {
+    setPollState({...pollState, comments})
+  }
+  
+  pollState.toggle = modalId => {
+    setPollState({...pollState, modalId})
+    setPollState({...pollState, modal: !pollState.modal})
   }
 
   pollState.showPoll = e => {

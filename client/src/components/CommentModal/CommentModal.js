@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Modal, ModalBody } from 'reactstrap'
+import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import deepPurple from '@material-ui/core/colors/deepPurple'
+import TextField from '@material-ui/core/TextField'
+import PollContext from '../../utils/PollContext'
 
-const [modal, setModal] = useState(false)
 
 const CommentModal = () => {
+  
+  const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 310,
+      },
+    },
+  }))
+  const classes = useStyles()
+  const theme = createMuiTheme({
+    palette: {
+      primary: deepPurple,
+      secondary: {
+        main: '#f44336',
+      },
+    },
+  })
+  
+  const { modal, toggle, handleInputChange, comment, pollID, createComment } = useContext(PollContext)
 
   return (
     <Modal isOpen={modal} toggle={toggle}>
@@ -11,10 +34,10 @@ const CommentModal = () => {
         <ModalBody>
           <ThemeProvider theme={theme}>
             <p>
-              <TextField id="outlined-basic" label="Comment" name="comment" variant="outlined" onChange={data.handleInputChange} value={data.comment} />
+              <TextField id="outlined-basic" label="Comment" name="comment" variant="outlined" onChange={handleInputChange} value={comment} />
             </p>
           </ThemeProvider>
-          <Button className="post" id={value} type="submit" onClick={(e) => { data.createComment(e, value); toggle(); }}>Post</Button>
+          <Button className="post" id={pollID} type="submit" onClick={(e) => { createComment(e, pollID); toggle(); }}>Post</Button>
         </ModalBody>
 
       </form>

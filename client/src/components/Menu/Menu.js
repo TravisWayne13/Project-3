@@ -6,7 +6,6 @@ import poll from '../../images/Poll.svg'
 import create from '../../images/Create.svg'
 import rightChevron from '../../images/Right-Chevron.svg'
 import { slide as Nav } from 'react-burger-menu'
-import cookie from 'react-cookies'
 
 const Menu = () => {
 
@@ -19,12 +18,11 @@ const Menu = () => {
 
   userState.logout = () => {
     sessionStorage.removeItem('userInfo')
-    cookie.remove('token', { path: '/' })
   }
 
   useEffect(() => {
     console.log(userState)
-    // Check token cookie, set initalLoad to false
+    // Check token session, set initalLoad to false
     let userInfo = JSON.parse(userState.userInfo)
     userSetState({...userState,
       username: userInfo.username,
