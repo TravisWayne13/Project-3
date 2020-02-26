@@ -6,9 +6,9 @@ Poll.io uses passport authentication for user sign up, and connects users to a s
 
 ## Install
 
-Git clone the repo 
+Git clone the repo [here](https://github.com/TravisWHouston/Project-3.git)
 
-Navigate to server.js folder and "npm install" to install the required dependencies.
+Navigate to both the root folder and the client folder "npm install" to install the required dependencies.
 
 Navigate to root directory and "npm start" to start client.
 
