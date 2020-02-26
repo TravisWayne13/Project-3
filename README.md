@@ -13,7 +13,7 @@ Navigate to both the root folder and the client folder "npm install" to install 
 Navigate to root directory and "npm start" to start client.
 
 ##Deployment
-You can see a deployed version here.
+You can see a deployed version [here](https://p0ll-io.herokuapp.com/).
 
 ## Built With
 * React
