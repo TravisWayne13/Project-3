@@ -29,6 +29,7 @@
     "survey-react": "^1.5.1"
   },
   "scripts": {
+    "deploy": "serve -s build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
